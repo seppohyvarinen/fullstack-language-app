@@ -1,0 +1,26 @@
+{
+  "name": "fullstack-language-app",
+  "version": "1.0.0",
+  "description": "This is my fullstack project work for my school TAMK.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seppohyvarinen/fullstack-language-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seppohyvarinen/fullstack-language-app/issues"
+  },
+  "homepage": "https://github.com/seppohyvarinen/fullstack-language-app#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}
