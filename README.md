@@ -2,3 +2,4 @@
 
 A fullstack project work that uses Node.js with Express at backend and React.js at the front.
 A work in progress, will update frequently!
+Eventually will be deployed to heroku.
