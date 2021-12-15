@@ -9,7 +9,7 @@ function App() {
     console.log(test);
 
     try {
-      const response = await axios.get("/alltranslations");
+      const response = await axios.get("/translations");
       setTest(response.data[0].finnish);
     } catch (error) {
       console.log(error);
