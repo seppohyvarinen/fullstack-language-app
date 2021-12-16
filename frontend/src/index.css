@@ -6,30 +6,38 @@
 .App {
   height: 100vh;
   overflow: scroll;
-  background-color: rgb(190, 246, 228);
+  background-color: rgb(148, 122, 219);
 }
 
 #selectTeacher {
   width: 350px;
   height: 350px;
-  background-color: red;
+  background-color: rgb(255, 155, 230);
   border-radius: 30px;
   display: grid;
   place-items: center;
+}
+
+#selectTeacher:hover {
+  background-color: rgb(231, 78, 142);
 }
 
 #selectStudent {
   width: 350px;
   height: 350px;
-  background-color: rgb(255, 251, 10);
+  background-color: rgb(113, 235, 235);
   border-radius: 30px;
   display: grid;
   place-items: center;
 }
 
+#selectStudent:hover {
+  background-color: rgb(45, 146, 146);
+}
+
 .Modes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
   grid-gap: 0.8vw;
   grid-row-gap: 20px;
 }
