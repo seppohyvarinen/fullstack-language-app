@@ -1,27 +1,12 @@
 import { useState } from "react";
+import ModeSelect from "./components/ModeSelect";
 
 const axios = require("axios").default;
 
 function App() {
-  const [test, setTest] = useState("info comes here");
+  const [mode, Setmode] = useState(0);
 
-  const getAll = async () => {
-    console.log(test);
-
-    try {
-      const response = await axios.get("/translations");
-      setTest(response.data[0].finnish);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  return (
-    <div className="App">
-      <p>{test}</p>
-      <button onClick={() => getAll()}></button>
-    </div>
-  );
+  return <div className="App">{mode === 0 && <ModeSelect />}</div>;
 }
 
 export default App;
