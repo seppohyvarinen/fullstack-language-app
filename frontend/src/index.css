@@ -2,3 +2,34 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.App {
+  height: 100vh;
+  overflow: scroll;
+  background-color: rgb(190, 246, 228);
+}
+
+#selectTeacher {
+  width: 350px;
+  height: 350px;
+  background-color: red;
+  border-radius: 30px;
+  display: grid;
+  place-items: center;
+}
+
+#selectStudent {
+  width: 350px;
+  height: 350px;
+  background-color: rgb(255, 251, 10);
+  border-radius: 30px;
+  display: grid;
+  place-items: center;
+}
+
+.Modes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 0.8vw;
+  grid-row-gap: 20px;
+}
