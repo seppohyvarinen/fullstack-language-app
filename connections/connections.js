@@ -1,6 +1,25 @@
 require("dotenv").config();
 const mysql = require("mysql");
 
+const Validator = require("jsonschema").Validator;
+
+const validator = new Validator();
+
+const translationSchema = {
+  properties: {
+    finnish: {
+      type: "string",
+    },
+    english: {
+      type: "string",
+    },
+
+    tag: {
+      type: "string",
+    },
+  },
+};
+
 let config = {
   connectionLimit: 10,
   host: process.env.DB_HOST,
@@ -21,22 +40,23 @@ pool.on("release", function (connection) {
 });
 
 let connections = {
-  save: (location) =>
+  save: (translation) =>
     new Promise((resolve, reject) => {
-      var check = validator.validate(location, locationSchema);
-
+      var check = validator.validate(translation, translationSchema);
       if (check.errors.length === 0) {
         var sql =
-          "insert into locations (latitude, longitude) values (" +
-          pool.escape(location.lat) +
+          "insert into fin_eng (finnish, english, tag) values (" +
+          pool.escape(translation.finnish) +
           ", " +
-          pool.escape(location.lon) +
+          pool.escape(translation.english) +
+          ", " +
+          pool.escape(translation.tag) +
           ")";
         pool.query(sql, (err, locations) => {
           if (err) {
             reject("Something went wrong with saving, please try again");
           } else {
-            resolve("SAVE SUCCESFUL, FINALLY!");
+            resolve("SAVE SUCCESFUL!");
           }
         });
       } else {
