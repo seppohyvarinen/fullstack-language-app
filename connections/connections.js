@@ -42,8 +42,10 @@ pool.on("release", function (connection) {
 let connections = {
   save: (translation) =>
     new Promise((resolve, reject) => {
+      console.log(translation);
       var check = validator.validate(translation, translationSchema);
       if (check.errors.length === 0) {
+        console.log("inside sql query");
         var sql =
           "insert into fin_eng (finnish, english, tag) values (" +
           pool.escape(translation.finnish) +
@@ -52,11 +54,11 @@ let connections = {
           ", " +
           pool.escape(translation.tag) +
           ")";
-        pool.query(sql, (err, locations) => {
+        pool.query(sql, (err) => {
           if (err) {
             reject("Something went wrong with saving, please try again");
           } else {
-            resolve("SAVE SUCCESFUL!");
+            resolve("SAVED SUCCESFULLY: ");
           }
         });
       } else {
