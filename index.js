@@ -8,6 +8,7 @@ const translations = require("./routes/routes.js");
 var cors = require("cors");
 app.use(cors());
 app.use(express.static("frontend/build"));
+app.use(express.json());
 app.use("/translations", translations);
 
 const server = app.listen(port, () => {
