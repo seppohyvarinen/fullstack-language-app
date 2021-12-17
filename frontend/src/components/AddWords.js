@@ -6,6 +6,18 @@ const AddWords = ({ setWords }) => {
   const [eng, setEng] = useState("");
   const [tag, setTag] = useState("");
 
+  const handleFin = (e) => {
+    setFin(e.target.value);
+  };
+
+  const handleEng = (e) => {
+    setEng(e.target.value);
+  };
+
+  const handleTag = (e) => {
+    setTag(e.target.value);
+  };
+
   const SaveWord = async () => {
     try {
       await axios.post("/translations", {
@@ -24,9 +36,12 @@ const AddWords = ({ setWords }) => {
   const Modal = () => {
     return (
       <div>
-        <input type={"text"}></input>
-        <input type={"text"}></input>
-        <input type={"text"}></input>
+        <h2> Suomeksi </h2>
+        <input type={"text"} onChange={handleFin} value={fin}></input>
+        <h2> In english </h2>
+        <input type={"text"} onChange={handleEng} value={eng}></input>
+        <h2> Tag </h2>
+        <input type={"text"} onChange={handleTag} value={tag}></input>
         <button onClick={() => SaveWord}></button>
       </div>
     );
