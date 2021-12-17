@@ -3,8 +3,6 @@ import ModeSelect from "./components/ModeSelect";
 import TeacherView from "./components/TeacherView";
 import StudentView from "./components/StudentView";
 
-const axios = require("axios").default;
-
 function App() {
   const [mode, Setmode] = useState(0);
 
