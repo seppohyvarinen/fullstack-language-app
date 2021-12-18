@@ -9,6 +9,7 @@ const translationSchema = {
   properties: {
     finnish: {
       type: "string",
+      pattern: ".*",
     },
     english: {
       type: "string",
