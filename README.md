@@ -1,4 +1,4 @@
-# Language app for learning english words (for finnish kids)
+# (WORK IN PROGRESS!) Language app for learning english words (for finnish kids)
 
 This application is designed for finnish kids and teachers to support learning english.
 The application has 2 modes, for students and for teachers.
