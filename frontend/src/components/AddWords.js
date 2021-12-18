@@ -21,7 +21,7 @@ const AddWords = ({ setWords, fetchAll }) => {
   const SaveWord = async () => {
     try {
       await axios.post("/translations", {
-        finnish: fin,
+        finnish: fin.to,
         english: eng,
         tag: tag,
       });
@@ -37,12 +37,22 @@ const AddWords = ({ setWords, fetchAll }) => {
   return (
     <div>
       <h2> Suomeksi </h2>
-      <input type={"text"} onChange={handleFin} value={fin}></input>
-      <h2> In english </h2>
-      <input type={"text"} onChange={handleEng} value={eng}></input>
-      <h2> Tag </h2>
-      <input type={"text"} onChange={handleTag} value={tag}></input>
-      <button onClick={() => SaveWord()}></button>
+      <form>
+        {" "}
+        <input type={"text"} onChange={handleFin} value={fin}></input>
+        <h2> In english </h2>
+        <input type={"text"} onChange={handleEng} value={eng}></input>
+        <h2> Tag </h2>
+        <input type={"text"} onChange={handleTag} value={tag}></input>
+        <button
+          style={{ display: "block" }}
+          className="AddButton"
+          type="submit"
+          onClick={() => SaveWord()}
+        >
+          Lisää sana tietokantaan
+        </button>
+      </form>
     </div>
   );
 };

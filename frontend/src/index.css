@@ -41,3 +41,44 @@
   grid-gap: 0.8vw;
   grid-row-gap: 20px;
 }
+
+.AddWords {
+  width: 350px;
+  height: 500px;
+
+  background-color: rgb(255, 192, 250);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.TranslationList {
+  background-color: rgb(127, 240, 255);
+  width: 350px;
+  height: 500px;
+  border-radius: 20px;
+  padding: 20px;
+  overflow: scroll;
+}
+
+.Teacherview {
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  grid-gap: 0.8vw;
+  grid-row-gap: 10px;
+  max-width: 800px;
+}
+
+.Words {
+  height: 30px;
+  margin: 15px;
+  background-color: bisque;
+  border-radius: 10px;
+  display: flex;
+  place-items: center;
+}
+
+.AddButton {
+  width: 100px;
+  height: 100px;
+}
