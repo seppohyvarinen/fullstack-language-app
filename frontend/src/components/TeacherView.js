@@ -11,7 +11,7 @@ const TeacherView = () => {
       var response = await axios.get("/translations");
 
       var mapped = response.data.map(({ finnish, english }) => (
-        <div>{finnish + " - " + english}</div>
+        <div className="Words">{finnish + " - " + english}</div>
       ));
       setWords(mapped);
     } catch (error) {
@@ -24,9 +24,12 @@ const TeacherView = () => {
   }, []);
 
   return (
-    <div>
-      <AddWords setWords={setWords} fetchAll={fetchAll} />
-      {words}
+    <div className="Teacherview">
+      <div className="AddWords">
+        <AddWords setWords={setWords} fetchAll={fetchAll} />
+      </div>
+
+      <div className="TranslationList">{words}</div>
     </div>
   );
 };
