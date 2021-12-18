@@ -10,9 +10,12 @@ function App() {
   return (
     <div className="App">
       <Navi />
-      {mode === 0 && <ModeSelect Setmode={Setmode} />}
-      {mode === 1 && <TeacherView Setmode={Setmode} />}
-      {mode === 2 && <StudentView Setmode={Setmode} />}
+
+      <div className="content">
+        {mode === 0 && <ModeSelect Setmode={Setmode} />}
+        {mode === 1 && <TeacherView Setmode={Setmode} />}
+        {mode === 2 && <StudentView Setmode={Setmode} />}
+      </div>
     </div>
   );
 }
