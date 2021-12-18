@@ -1,7 +1,7 @@
 import { useState } from "react";
-import ModeSelect from "./components/ModeSelect";
-import TeacherView from "./components/TeacherView";
-import StudentView from "./components/StudentView";
+import ModeSelect from "./ModeSelect";
+import TeacherView from "./TeacherView";
+import StudentView from "./StudentView";
 
 const Home = () => {
   const [mode, Setmode] = useState(0);
