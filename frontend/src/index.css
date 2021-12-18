@@ -82,3 +82,12 @@
   width: 100px;
   height: 100px;
 }
+
+.TeacherInfo {
+  text-align: center;
+  min-height: 100px;
+  width: 260px;
+  height: auto;
+  background-color: rgb(216, 174, 255);
+  border-radius: 30px;
+}

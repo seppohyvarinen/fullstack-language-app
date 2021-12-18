@@ -4,6 +4,7 @@ import Navi from "./components/Navi";
 import Home from "./components/Home";
 
 function App() {
+  const [homeState, setHomeState] = useState(0);
   return (
     <BrowserRouter>
       {" "}
@@ -12,7 +13,12 @@ function App() {
 
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <Home onClick={() => setHomeState(0)} state={homeState} />
+              }
+            />
           </Routes>
         </div>
       </div>

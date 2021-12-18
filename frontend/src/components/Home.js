@@ -3,8 +3,8 @@ import ModeSelect from "./ModeSelect";
 import TeacherView from "./TeacherView";
 import StudentView from "./StudentView";
 
-const Home = () => {
-  const [mode, Setmode] = useState(0);
+const Home = ({ state }) => {
+  const [mode, Setmode] = useState(state);
   return (
     <div>
       {mode === 0 && <ModeSelect Setmode={Setmode} />}
