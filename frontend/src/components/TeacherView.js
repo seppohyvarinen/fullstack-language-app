@@ -24,12 +24,19 @@ const TeacherView = () => {
   }, []);
 
   return (
-    <div className="Teacherview">
-      <div className="AddWords">
-        <AddWords setWords={setWords} fetchAll={fetchAll} />
-      </div>
+    <div>
+      <table className="TeacherInfo">
+        Opettaja-tilassa voit lisätä uusia käännöksiä
+        <br />
+        tietokantaan!
+      </table>
+      <div className="Teacherview">
+        <div className="AddWords">
+          <AddWords setWords={setWords} fetchAll={fetchAll} />
+        </div>
 
-      <div className="TranslationList">{words}</div>
+        <div className="TranslationList">{words}</div>
+      </div>
     </div>
   );
 };
