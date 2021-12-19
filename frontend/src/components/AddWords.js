@@ -1,10 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import Select from "react-select";
 const axios = require("axios").default;
 
 const AddWords = ({ setWords, fetchAll }) => {
   const [fin, setFin] = useState("");
   const [eng, setEng] = useState("");
   const [tag, setTag] = useState("");
+  const [tagArray, setTagArray] = useState([]);
+
+  const fetchTags = async () => {
+    try {
+      var response = await axios.get("/tags");
+
+      var mapped = response.data.map(({ tag }) => (
+        <div className="Tags">{tag}</div>
+      ));
+      setTagArray(mapped);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTags();
+  }, []);
 
   const handleFin = (e) => {
     setFin(e.target.value);
@@ -41,7 +61,7 @@ const AddWords = ({ setWords, fetchAll }) => {
       <h2> In english </h2>
       <input type={"text"} onChange={handleEng} value={eng}></input>
       <h2> Tag </h2>
-      <input type={"text"} onChange={handleTag} value={tag}></input>
+      <Select options={tagArray} placeholder="Valitse tagi" />
       <button
         onClick={() => SaveWord()}
         style={{ display: "block" }}
