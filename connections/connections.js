@@ -104,6 +104,16 @@ let connections = {
         }
       });
     }),
+  findTags: () =>
+    new Promise((resolve, reject) => {
+      pool.query("select * from tags", (err, locations) => {
+        if (err) {
+          reject("Something went wrong with fetching tags, please try again");
+        } else {
+          resolve(locations);
+        }
+      });
+    }),
   deleteById: (id) =>
     new Promise((resolve, reject) => {
       pool.query(
