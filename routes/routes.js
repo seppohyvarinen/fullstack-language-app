@@ -15,6 +15,17 @@ translations.get("/", async (req, res) => {
   }
 });
 
+translations.get("/tags", async (req, res) => {
+  console.log("here");
+  try {
+    let tags = await connections.findTags();
+    res.send(tags);
+  } catch (error) {
+    res.statusCode = 404;
+    res.send(error);
+  }
+});
+
 translations.post("/", async (req, res) => {
   let tmp = req.body;
 
