@@ -6,17 +6,23 @@ const axios = require("axios").default;
 const AddWords = ({ setWords, fetchAll }) => {
   const [fin, setFin] = useState("");
   const [eng, setEng] = useState("");
-  const [tag, setTag] = useState("");
+  const [tagInput, setTagInput] = useState("");
   const [tagArray, setTagArray] = useState([]);
 
   const fetchTags = async () => {
     try {
-      var response = await axios.get("/tags");
+      var response = await axios.get("/translations/tags");
 
-      var mapped = response.data.map(({ tag }) => (
-        <div className="Tags">{tag}</div>
-      ));
-      setTagArray(mapped);
+      let temp = [];
+
+      var mapped = await response.data.map(({ tag }) => tag);
+
+      for (var tag of mapped) {
+        temp.push({ label: tag, value: tag });
+      }
+
+      setTagArray(temp);
+      console.log(tagArray);
     } catch (error) {
       alert(error);
     }
@@ -35,7 +41,8 @@ const AddWords = ({ setWords, fetchAll }) => {
   };
 
   const handleTag = (e) => {
-    setTag(e.target.value);
+    console.log(e);
+    setTagInput(e);
   };
 
   const SaveWord = async () => {
@@ -43,11 +50,11 @@ const AddWords = ({ setWords, fetchAll }) => {
       await axios.post("/translations", {
         finnish: fin,
         english: eng,
-        tag: tag,
+        tag: tagInput.label,
       });
       setFin("");
       setEng("");
-      setTag("");
+      setTagInput("");
       fetchAll();
     } catch (error) {
       alert(error);
@@ -61,7 +68,12 @@ const AddWords = ({ setWords, fetchAll }) => {
       <h2> In english </h2>
       <input type={"text"} onChange={handleEng} value={eng}></input>
       <h2> Tag </h2>
-      <Select options={tagArray} placeholder="Valitse tagi" />
+      <Select
+        options={tagArray}
+        placeholder="Valitse tagi"
+        onChange={handleTag}
+        value={tagInput}
+      />
       <button
         onClick={() => SaveWord()}
         style={{ display: "block" }}
