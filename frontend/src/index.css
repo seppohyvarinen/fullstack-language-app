@@ -109,3 +109,20 @@
   display: grid;
   place-items: center;
 }
+.Gametag {
+  display: grid;
+  place-items: center;
+  width: 300px;
+  height: 200px;
+  background-color: blueviolet;
+  border-radius: 20px;
+}
+
+.TagList {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  grid-gap: 0.8vw;
+  grid-row-gap: 10px;
+  max-width: 800px;
+}
