@@ -10,7 +10,7 @@ const WordGame = ({ gameMode }) => {
       var response = await axios.get("/translations/tags");
 
       var mapped = response.data.map(({ tag }) => (
-        <div className="Gametags">{tag}</div>
+        <div className="Gametag">{tag}</div>
       ));
       setTags(mapped);
     } catch (error) {
@@ -22,10 +22,10 @@ const WordGame = ({ gameMode }) => {
     fetchTags();
   }, []);
   return (
-    <>
+    <div className="GameMenu">
       You are playing with game mode {gameMode}
-      <div>{tags}</div>
-    </>
+      <div className="TagList">{tags}</div>
+    </div>
   );
 };
 
