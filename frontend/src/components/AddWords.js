@@ -8,6 +8,7 @@ const AddWords = ({ setWords, fetchAll }) => {
   const [eng, setEng] = useState("");
   const [tagInput, setTagInput] = useState("");
   const [tagArray, setTagArray] = useState([]);
+  const [newTag, setNewTag] = useState("");
 
   const fetchTags = async () => {
     try {
@@ -45,6 +46,10 @@ const AddWords = ({ setWords, fetchAll }) => {
     setTagInput(e);
   };
 
+  const handleNewTag = (e) => {
+    setNewTag(e.target.value);
+  };
+
   const SaveWord = async () => {
     try {
       await axios.post("/translations", {
@@ -56,6 +61,20 @@ const AddWords = ({ setWords, fetchAll }) => {
       setEng("");
       setTagInput("");
       fetchAll();
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const SaveNewTag = async () => {
+    try {
+      await axios.post("/translations/tags", {
+        tag: newTag,
+      });
+
+      setNewTag("");
+
+      fetchTags();
     } catch (error) {
       alert(error);
     }
@@ -82,6 +101,9 @@ const AddWords = ({ setWords, fetchAll }) => {
       >
         Lisää sana tietokantaan
       </button>
+      <h2>Ei löydy sopivaa tagia? Lisää tästä uusi</h2>
+      <input type={"text"} onChange={handleNewTag} value={newTag}></input>
+      <button onClick={() => SaveNewTag()}>Lisää tagi tietokantaan</button>
     </div>
   );
 };
