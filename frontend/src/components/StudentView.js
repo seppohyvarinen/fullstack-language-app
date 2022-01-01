@@ -1,5 +1,10 @@
 const StudentView = () => {
-  return <div>This is the Student View</div>;
+  return (
+    <div className="Modes">
+      <div className="FinEng">Opettele sanoja Suomesta Englanniksi</div>
+      <div className="EngFin">Opettele sanoja Englannista Suomeksi</div>
+    </div>
+  );
 };
 
 export default StudentView;
