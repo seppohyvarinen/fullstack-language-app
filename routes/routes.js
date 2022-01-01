@@ -41,6 +41,7 @@ translations.post("/", async (req, res) => {
 
 translations.post("/tag", async (req, res) => {
   let tmp = req.body;
+  console.log("taghere");
 
   try {
     let save = await connections.saveTag(tmp);
