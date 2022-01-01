@@ -76,11 +76,12 @@ let connections = {
     }),
   saveTag: (tag) =>
     new Promise((resolve, reject) => {
-      console.log(translation);
+      console.log(tag);
       var check = validator.validate(tag, tagSchema);
       if (check.errors.length === 0) {
         console.log("inside sql query");
-        var sql = "insert into tag (tag) values (" + pool.escape(tag.tag) + ")";
+        var sql =
+          "insert into tags (tag) values (" + pool.escape(tag.tag) + ")";
         pool.query(sql, (err) => {
           if (err) {
             reject(

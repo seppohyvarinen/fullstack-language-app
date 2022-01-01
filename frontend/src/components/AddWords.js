@@ -68,7 +68,7 @@ const AddWords = ({ setWords, fetchAll }) => {
 
   const SaveNewTag = async () => {
     try {
-      await axios.post("/translations/tags", {
+      await axios.post("/translations/tag", {
         tag: newTag,
       });
 
