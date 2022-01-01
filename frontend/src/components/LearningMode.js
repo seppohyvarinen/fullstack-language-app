@@ -1,10 +1,10 @@
 import FinEng from "../img/fin-eng.png";
 import EngFin from "../img/eng-fin.png";
 
-const LearningMode = () => {
+const LearningMode = ({ setMode }) => {
   return (
     <div className="Modes">
-      <div className="FinEng">
+      <div className="FinEng" onClick={() => setMode(1)}>
         Opettele sanoja Suomesta Englanniksi
         <img
           className="Flags"
@@ -13,7 +13,7 @@ const LearningMode = () => {
         />
       </div>
 
-      <div className="EngFin">
+      <div className="EngFin" onClick={() => setMode(2)}>
         Opettele sanoja Englannista Suomeksi
         <img
           className="Flags"
