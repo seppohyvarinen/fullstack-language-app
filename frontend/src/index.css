@@ -91,3 +91,21 @@
   background-color: rgb(216, 174, 255);
   border-radius: 30px;
 }
+
+.FinEng {
+  background-color: rgb(137, 221, 255);
+  width: 400px;
+  height: 400px;
+}
+
+.EngFin {
+  background-color: rgb(236, 138, 228);
+  width: 400px;
+  height: 400px;
+}
+
+.Flags {
+  width: 300px;
+  display: grid;
+  place-items: center;
+}
