@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import GameScreen from "./GameScreen";
 
 const axios = require("axios").default;
 
@@ -31,12 +32,17 @@ const WordGame = ({ gameMode }) => {
     fetchTags();
   }, []);
   return (
-    <div className="GameMenu">
-      You are playing with game mode {gameMode}
-      game screen is on {gameOn}
-      keyword is {keyword}
-      <div className="TagList">{tags}</div>
-    </div>
+    <>
+      {gameOn && <GameScreen />}
+      {!gameOn && (
+        <div className="GameMenu">
+          You are playing with game mode {gameMode}
+          game screen is on {gameOn}
+          keyword is {keyword}
+          <div className="TagList">{tags}</div>
+        </div>
+      )}
+    </>
   );
 };
 
