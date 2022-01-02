@@ -3,7 +3,7 @@ import AddWords from "./AddWords";
 
 const axios = require("axios").default;
 
-const TeacherView = () => {
+const TeacherView = ({ Setmode }) => {
   const [words, setWords] = useState([]);
 
   const fetchAll = async () => {
@@ -30,6 +30,7 @@ const TeacherView = () => {
         <br />
         tietokantaan!
       </table>
+      <button onClick={() => Setmode(0)}>Takaisin alkuun</button>
       <div className="Teacherview">
         <div className="AddWords">
           <AddWords setWords={setWords} fetchAll={fetchAll} />
