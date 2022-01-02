@@ -140,6 +140,7 @@ let connections = {
           if (err) {
             reject("can't find words with the tag " + tag);
           } else {
+            console.log(words);
             resolve(words);
           }
         }
