@@ -19,9 +19,12 @@ const GameScreen = ({ keyword }) => {
   };
 
   return (
-    <div>
-      <button onClick={() => fetchByTag(keyword)}>start the game</button>
-      {words}
+    <div className="modalBG">
+      {" "}
+      <div className="Screen">
+        <button onClick={() => fetchByTag(keyword)}>start the game</button>
+        {words}
+      </div>
     </div>
   );
 };
