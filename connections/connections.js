@@ -132,15 +132,15 @@ let connections = {
       );
     }),
 
-  findById: (id) =>
+  findByTag: (tag) =>
     new Promise((resolve, reject) => {
       pool.query(
-        "select * from locations where id = " + pool.escape(id),
-        (err, location) => {
+        "select * from fin_eng where tag = " + pool.escape(tag),
+        (err, words) => {
           if (err) {
-            reject("can't find location with the id " + id);
+            reject("can't find words with the tag " + tag);
           } else {
-            resolve(location);
+            resolve(words);
           }
         }
       );
