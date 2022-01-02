@@ -57,6 +57,7 @@ translations.post("/tag", async (req, res) => {
 
 async function tagFilter(req, res, next) {
   const tag = req.query.tag;
+  console.log(tag);
 
   if (tag !== undefined) {
     try {
