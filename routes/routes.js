@@ -4,6 +4,8 @@ var translations = express.Router();
 
 var connections = require("../connections/connections.js");
 
+translations.use(tagFilter);
+
 translations.get("/", async (req, res) => {
   console.log("here");
   try {
@@ -52,5 +54,22 @@ translations.post("/tag", async (req, res) => {
     res.send(`${res.statusCode} Bad Request: ${error}`);
   }
 });
+
+async function tagFilter(req, res, next) {
+  const tag = req.query.tag;
+
+  if (tag !== undefined) {
+    try {
+      var response = connections.findByTag(tag);
+      res.statusCode = 201;
+      res.send(response);
+    } catch (error) {
+      res.statusCode = 400;
+      res.send(`${res.statusCode} Bad Request: ${error}`);
+    }
+  } else {
+    next();
+  }
+}
 
 module.exports = translations;
