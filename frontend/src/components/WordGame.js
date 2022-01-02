@@ -4,6 +4,8 @@ const axios = require("axios").default;
 
 const WordGame = ({ gameMode }) => {
   const [tags, setTags] = useState([]);
+  const [keyword, setKeyword] = useState("");
+  const [gameOn, setGameOn] = useState(false);
 
   const fetchTags = async () => {
     try {
