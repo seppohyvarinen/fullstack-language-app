@@ -4,6 +4,7 @@ const axios = require("axios").default;
 
 const GameScreen = ({ keyword }) => {
   const [words, setWords] = useState([]);
+  const [buttonPress, setButtonPress] = useState([]);
 
   const fetchByTag = async (k) => {
     try {
@@ -12,7 +13,11 @@ const GameScreen = ({ keyword }) => {
           tag: k,
         },
       });
-      setWords(response.data[0]);
+      var mapped = response.data.map(({ finnish, english }) => (
+        <div className="Words">{finnish + " - " + english}</div>
+      ));
+
+      setWords(mapped);
     } catch (error) {
       alert(error);
     }
@@ -23,7 +28,8 @@ const GameScreen = ({ keyword }) => {
       {" "}
       <div className="Screen">
         <button onClick={() => fetchByTag(keyword)}>start the game</button>
-        {words}
+
+        {buttonPress && words}
       </div>
     </div>
   );

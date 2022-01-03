@@ -7,7 +7,8 @@ var connections = require("../connections/connections.js");
 translations.use(tagFilter);
 
 translations.get("/", async (req, res) => {
-  console.log("here");
+  console.log("was this called");
+
   try {
     let all = await connections.findAll();
     res.send(all);
@@ -61,7 +62,7 @@ async function tagFilter(req, res, next) {
 
   if (tag !== undefined) {
     try {
-      var response = connections.findByTag(tag);
+      var response = await connections.findByTag(tag);
       res.statusCode = 201;
       res.send(response);
     } catch (error) {
@@ -70,6 +71,7 @@ async function tagFilter(req, res, next) {
     }
   } else {
     next();
+    console.log("why here");
   }
 }
 

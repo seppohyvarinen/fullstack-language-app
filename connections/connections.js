@@ -97,11 +97,12 @@ let connections = {
     }),
   findAll: () =>
     new Promise((resolve, reject) => {
-      pool.query("select * from fin_eng", (err, locations) => {
+      pool.query("select * from fin_eng", (err, words) => {
         if (err) {
           reject("Something went wrong with fetching data, please try again");
         } else {
-          resolve(locations);
+          console.log(words);
+          resolve(words);
         }
       });
     }),
@@ -140,7 +141,6 @@ let connections = {
           if (err) {
             reject("can't find words with the tag " + tag);
           } else {
-            console.log(words);
             resolve(words);
           }
         }
