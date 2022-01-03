@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const axios = require("axios").default;
 
@@ -6,6 +6,7 @@ const GameScreen = ({ keyword, gameMode }) => {
   const [words, setWords] = useState([]);
   const [gameOn, setGameOn] = useState(false);
   const [index, setIndex] = useState(0);
+  const correct = useRef("");
 
   const handleStartGame = async (k) => {
     try {
@@ -29,23 +30,29 @@ const GameScreen = ({ keyword, gameMode }) => {
   const Game = (mode) => {
     var question = [];
     var answers = [];
+
     if (mode === 1) {
+      correct.current = words[index].english;
+      console.log(correct.current);
       question = words.map(({ finnish }) => (
         <div className="Question">{finnish}</div>
       ));
 
       answers = words.map(({ english }) => (
-        <div className="Answer" onClick={() => next()}>
+        <div className="Answer" onClick={() => next(english)}>
           {english}
         </div>
       ));
     } else {
+      correct.current = words[index].finnish;
+      console.log(correct.current);
+
       question = words.map(({ english }) => (
         <div className="Question">{english}</div>
       ));
 
       answers = words.map(({ finnish }) => (
-        <div className="Answer" onClick={() => next()}>
+        <div className="Answer" onClick={() => next(finnish)}>
           {finnish}
         </div>
       ));
@@ -59,8 +66,13 @@ const GameScreen = ({ keyword, gameMode }) => {
     );
   };
 
-  const next = () => {
-    setIndex(index + 1);
+  const next = (a) => {
+    if (a === correct.current) {
+      alert("yep");
+      setIndex(index + 1);
+    } else {
+      alert(a);
+    }
   };
 
   return (
