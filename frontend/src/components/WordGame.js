@@ -33,7 +33,7 @@ const WordGame = ({ gameMode }) => {
   }, []);
   return (
     <>
-      {gameOn && <GameScreen keyword={keyword} />}
+      {gameOn && <GameScreen keyword={keyword} gameMode={gameMode} />}
       {!gameOn && (
         <div className="GameMenu">
           You are playing with game mode {gameMode}
