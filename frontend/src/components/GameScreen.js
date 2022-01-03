@@ -2,22 +2,24 @@ import { useState, useEffect } from "react";
 
 const axios = require("axios").default;
 
-const GameScreen = ({ keyword }) => {
+const GameScreen = ({ keyword, gameMode }) => {
   const [words, setWords] = useState([]);
-  const [buttonPress, setButtonPress] = useState([]);
+  const [gameOn, setGameOn] = useState(false);
 
-  const fetchByTag = async (k) => {
+  const handleStartGame = async (k) => {
     try {
       var response = await axios.get("/translations", {
         params: {
           tag: k,
         },
       });
-      var mapped = response.data.map(({ finnish, english }) => (
-        <div className="Words">{finnish + " - " + english}</div>
-      ));
+      var mapped = response.data.map(({ finnish, english }) => ({
+        finnish: finnish,
+        english: english,
+      }));
 
       setWords(mapped);
+      setGameOn(true);
     } catch (error) {
       alert(error);
     }
@@ -27,9 +29,13 @@ const GameScreen = ({ keyword }) => {
     <div className="modalBG">
       {" "}
       <div className="Screen">
-        <button onClick={() => fetchByTag(keyword)}>start the game</button>
-
-        {buttonPress && words}
+        {!gameOn && (
+          <div className="Instructions">
+            <button onClick={() => handleStartGame(keyword)}>
+              start the game
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
