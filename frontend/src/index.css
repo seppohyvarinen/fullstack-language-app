@@ -153,3 +153,21 @@
   margin-right: auto;
   text-align: center;
 }
+
+.Question {
+  height: 30px;
+  margin: 15px;
+  background-color: rgb(71, 199, 231);
+  border-radius: 10px;
+  display: flex;
+  place-items: center;
+}
+
+.Answer {
+  height: 30px;
+  margin: 15px;
+  background-color: rgb(222, 102, 238);
+  border-radius: 10px;
+  display: flex;
+  place-items: center;
+}

@@ -5,6 +5,7 @@ const axios = require("axios").default;
 const GameScreen = ({ keyword, gameMode }) => {
   const [words, setWords] = useState([]);
   const [gameOn, setGameOn] = useState(false);
+  const [index, setIndex] = useState(0);
 
   const handleStartGame = async (k) => {
     try {
@@ -25,6 +26,29 @@ const GameScreen = ({ keyword, gameMode }) => {
     }
   };
 
+  const Game = (mode) => {
+    var question = words.map(({ finnish }) => (
+      <div className="Question">{finnish}</div>
+    ));
+
+    var answers = words.map(({ english }) => (
+      <div className="Answer" onClick={() => next()}>
+        {english}
+      </div>
+    ));
+
+    return (
+      <div>
+        <div>{question[index]}</div>
+        <div>{answers}</div>
+      </div>
+    );
+  };
+
+  const next = () => {
+    setIndex(index + 1);
+  };
+
   return (
     <div className="modalBG">
       {" "}
@@ -36,6 +60,7 @@ const GameScreen = ({ keyword, gameMode }) => {
             </button>
           </div>
         )}
+        {gameOn && Game(gameMode)}
       </div>
     </div>
   );
