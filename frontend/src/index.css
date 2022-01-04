@@ -9,36 +9,68 @@
 .App {
   height: 100vh;
   overflow: scroll;
-  background-color: rgb(148, 122, 219);
+  background-image: linear-gradient(rgb(148, 122, 219), rgb(218, 205, 253));
+}
+
+.navbar-brand {
+  margin-left: 40px;
+  font-size: 1.5rem !important;
+}
+
+.nav-link {
+  font-size: 1.5rem !important;
+}
+
+.nav-link:hover {
+  color: rgb(148, 14, 141) !important;
 }
 
 #selectTeacher {
+  font-size: xx-large;
   width: 350px;
   height: 350px;
   background-color: rgb(255, 155, 230);
-  border-radius: 30px;
+  border-radius: 180px;
   display: grid;
   place-items: center;
+  box-shadow: 0 0 0 0 rgba(255, 155, 230);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 #selectTeacher:hover {
   background-color: rgb(231, 78, 142);
+  -webkit-animation: wiggle 0.8s infinite;
+  -moz-animation: wiggle 0.8s infinite;
+  animation: wiggle 3s infinite;
+  cursor: pointer;
 }
 
 #selectStudent {
+  font-size: xx-large;
   width: 350px;
   height: 350px;
   background-color: rgb(113, 235, 235);
-  border-radius: 30px;
+  border: 5px rgb(130, 231, 231) solid;
+  border-radius: 180px;
   display: grid;
   place-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 #selectStudent:hover {
   background-color: rgb(45, 146, 146);
+  -webkit-animation: wiggle2 3s infinite;
+  -moz-animation: wiggle2 3s infinite;
+  animation: wiggle2 3s infinite;
+  cursor: pointer;
 }
 
 .Modes {
+  margin-top: 60px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
   grid-gap: 0.8vw;
@@ -180,4 +212,28 @@
   border-radius: 10px;
   display: flex;
   place-items: center;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes wiggle2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
