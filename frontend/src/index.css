@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
+
 * {
   margin-left: auto;
   margin-right: auto;
+  font-family: "Patrick Hand", cursive;
 }
 
 .App {
@@ -40,6 +43,7 @@
   grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
   grid-gap: 0.8vw;
   grid-row-gap: 20px;
+  max-width: 800px;
 }
 
 .AddWords {
@@ -94,14 +98,20 @@
 
 .FinEng {
   background-color: rgb(137, 221, 255);
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
+  border-radius: 20px;
+  display: grid;
+  text-align: center;
 }
 
 .EngFin {
   background-color: rgb(236, 138, 228);
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
+  border-radius: 20px;
+  display: grid;
+  text-align: center;
 }
 
 .Flags {
