@@ -34,7 +34,12 @@ const WordGame = ({ gameMode, amount }) => {
   return (
     <>
       {gameOn && (
-        <GameScreen keyword={keyword} gameMode={gameMode} amount={amount} />
+        <GameScreen
+          keyword={keyword}
+          gameMode={gameMode}
+          amount={amount}
+          back={setGameOn}
+        />
       )}
       {!gameOn && (
         <div className="GameMenu">

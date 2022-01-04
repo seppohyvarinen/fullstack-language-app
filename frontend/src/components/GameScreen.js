@@ -3,7 +3,7 @@ import Results from "./Results";
 
 const axios = require("axios").default;
 
-const GameScreen = ({ keyword, gameMode, amount }) => {
+const GameScreen = ({ keyword, gameMode, amount, back }) => {
   const [words, setWords] = useState([]);
   const [gameOn, setGameOn] = useState(false);
   const [index, setIndex] = useState(0);
@@ -117,6 +117,7 @@ const GameScreen = ({ keyword, gameMode, amount }) => {
             <button onClick={() => handleStartGame(keyword)}>
               Pelaa Uudelleen
             </button>
+            <button onClick={() => back(false)}>Palaa valikkoon</button>
           </>
         )}
       </div>
