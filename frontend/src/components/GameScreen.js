@@ -6,6 +6,7 @@ const GameScreen = ({ keyword, gameMode }) => {
   const [words, setWords] = useState([]);
   const [gameOn, setGameOn] = useState(false);
   const [index, setIndex] = useState(0);
+  const [score, setScore] = useState(0);
   const correct = useRef("");
 
   const handleStartGame = async (k) => {
@@ -61,6 +62,7 @@ const GameScreen = ({ keyword, gameMode }) => {
 
     return (
       <div>
+        <div className="Score">{score}</div>
         <div>{question[index]}</div>
         <div>{answers}</div>
       </div>
@@ -69,11 +71,9 @@ const GameScreen = ({ keyword, gameMode }) => {
 
   const next = (a) => {
     if (a === correct.current) {
-      alert("yep");
-      setIndex(index + 1);
-    } else {
-      alert(a);
+      setScore(score + 1);
     }
+    setIndex(index + 1);
   };
 
   return (
