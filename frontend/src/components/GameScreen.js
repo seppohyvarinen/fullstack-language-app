@@ -31,32 +31,33 @@ const GameScreen = ({ keyword, gameMode }) => {
     var question = [];
     var answers = [];
 
-    if (mode === 1) {
-      correct.current = words[index].english;
-      console.log(correct.current);
-      question = words.map(({ finnish }) => (
-        <div className="Question">{finnish}</div>
-      ));
+    mode === 1
+      ? (correct.current = words[index].english)
+      : (correct.current = words[index].finnish);
 
-      answers = words.map(({ english }) => (
-        <div className="Answer" onClick={() => next(english)}>
-          {english}
-        </div>
-      ));
-    } else {
-      correct.current = words[index].finnish;
-      console.log(correct.current);
+    question = words.map(({ finnish, english }) => {
+      if (mode === 1) {
+        return <div className="Question">{finnish}</div>;
+      } else {
+        return <div className="Question">{english}</div>;
+      }
+    });
 
-      question = words.map(({ english }) => (
-        <div className="Question">{english}</div>
-      ));
-
-      answers = words.map(({ finnish }) => (
-        <div className="Answer" onClick={() => next(finnish)}>
-          {finnish}
-        </div>
-      ));
-    }
+    answers = words.map(({ finnish, english }) => {
+      if (mode === 1) {
+        return (
+          <div className="Answer" onClick={() => next(finnish)}>
+            {finnish}
+          </div>
+        );
+      } else {
+        return (
+          <div className="Answer" onClick={() => next(english)}>
+            {english}
+          </div>
+        );
+      }
+    });
 
     return (
       <div>
