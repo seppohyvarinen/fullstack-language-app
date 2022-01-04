@@ -7,6 +7,7 @@ const ModeSelect = ({ Setmode }) => {
       <div onClick={() => handleClick(1)} id="selectTeacher">
         Opettajille
       </div>
+
       <div onClick={() => handleClick(2)} id="selectStudent">
         Oppilaille
       </div>
