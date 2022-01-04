@@ -13,6 +13,9 @@ const GameScreen = ({ keyword, gameMode, amount }) => {
 
   const handleStartGame = async (k) => {
     try {
+      setGameThrough(false);
+      setScore(0);
+      setIndex(0);
       var response = await axios.get("/translations", {
         params: {
           tag: k,
@@ -22,6 +25,8 @@ const GameScreen = ({ keyword, gameMode, amount }) => {
         finnish: finnish,
         english: english,
       }));
+
+      console.log(mapped);
 
       if (mapped.length > amount) {
         var cut = ArrayCutter(mapped, amount);
@@ -74,7 +79,7 @@ const GameScreen = ({ keyword, gameMode, amount }) => {
     return (
       <div>
         <div className="Score">{score}</div>
-
+        <div>{keyword}</div>
         <div>{question[index]}</div>
         <div>{shuffle(answers)}</div>
       </div>
@@ -97,7 +102,7 @@ const GameScreen = ({ keyword, gameMode, amount }) => {
     <div className="modalBG">
       {" "}
       <div className="Screen">
-        {!gameOn && (
+        {!gameOn && !gameThrough && (
           <div className="Instructions">
             <button onClick={() => handleStartGame(keyword)}>
               start the game
@@ -105,7 +110,15 @@ const GameScreen = ({ keyword, gameMode, amount }) => {
           </div>
         )}
         {gameOn && Game(gameMode)}
-        {gameThrough && <Results amount={amount} score={score} />}
+        {gameThrough && (
+          <>
+            {" "}
+            <Results amount={amount} score={score} />
+            <button onClick={() => handleStartGame(keyword)}>
+              Pelaa Uudelleen
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
