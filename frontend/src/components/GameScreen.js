@@ -45,7 +45,7 @@ const GameScreen = ({ keyword, gameMode }) => {
     });
 
     answers = words.map(({ finnish, english }) => {
-      if (mode === 1) {
+      if (mode === 2) {
         return (
           <div className="Answer" onClick={() => next(finnish)}>
             {finnish}
