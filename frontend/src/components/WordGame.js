@@ -3,7 +3,7 @@ import GameScreen from "./GameScreen";
 
 const axios = require("axios").default;
 
-const WordGame = ({ gameMode }) => {
+const WordGame = ({ gameMode, amount }) => {
   const [tags, setTags] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [gameOn, setGameOn] = useState(false);
@@ -33,7 +33,9 @@ const WordGame = ({ gameMode }) => {
   }, []);
   return (
     <>
-      {gameOn && <GameScreen keyword={keyword} gameMode={gameMode} />}
+      {gameOn && (
+        <GameScreen keyword={keyword} gameMode={gameMode} amount={amount} />
+      )}
       {!gameOn && (
         <div className="GameMenu">
           You are playing with game mode {gameMode}

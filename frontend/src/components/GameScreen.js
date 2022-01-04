@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 const axios = require("axios").default;
 
-const GameScreen = ({ keyword, gameMode }) => {
+const GameScreen = ({ keyword, gameMode, amount }) => {
   const [words, setWords] = useState([]);
   const [gameOn, setGameOn] = useState(false);
   const [index, setIndex] = useState(0);
@@ -21,7 +21,14 @@ const GameScreen = ({ keyword, gameMode }) => {
         english: english,
       }));
 
-      setWords(mapped);
+      if (mapped.length > amount) {
+        var cut = ArrayCutter(mapped, amount);
+        console.log(cut);
+        setWords(cut);
+      } else {
+        setWords(mapped);
+      }
+
       setGameOn(true);
     } catch (error) {
       alert(error);
@@ -60,11 +67,31 @@ const GameScreen = ({ keyword, gameMode }) => {
       }
     });
 
+    function shuffle(array) {
+      let currentIndex = array.length,
+        randomIndex;
+
+      // While there remain elements to shuffle...
+      while (currentIndex != 0) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex],
+          array[currentIndex],
+        ];
+      }
+
+      return array;
+    }
+
     return (
       <div>
         <div className="Score">{score}</div>
         <div>{question[index]}</div>
-        <div>{answers}</div>
+        <div>{shuffle(answers)}</div>
       </div>
     );
   };
@@ -91,6 +118,27 @@ const GameScreen = ({ keyword, gameMode }) => {
       </div>
     </div>
   );
+};
+
+const ArrayCutter = (arr, size) => {
+  var indexes = [];
+  var newArray = [];
+  var max = arr.length;
+  for (var i = 0; i < size; i++) {
+    let newIndex = Math.floor(Math.random() * max);
+    while (indexes.includes(newIndex)) {
+      newIndex = Math.floor(Math.random() * max);
+    }
+    indexes.push(newIndex);
+  }
+  console.log(arr);
+  console.log(indexes);
+
+  for (var i = 0; i < indexes.length; i++) {
+    newArray.push(arr[indexes[i]]);
+  }
+
+  return newArray;
 };
 
 export default GameScreen;
