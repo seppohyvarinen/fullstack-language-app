@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Results from "./Results";
 
 const axios = require("axios").default;
 
@@ -7,6 +8,7 @@ const GameScreen = ({ keyword, gameMode, amount }) => {
   const [gameOn, setGameOn] = useState(false);
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [gameThrough, setGameThrough] = useState(false);
   const correct = useRef("");
 
   const handleStartGame = async (k) => {
@@ -39,9 +41,11 @@ const GameScreen = ({ keyword, gameMode, amount }) => {
     var question = [];
     var answers = [];
 
-    mode === 1
-      ? (correct.current = words[index].english)
-      : (correct.current = words[index].finnish);
+    if (index < amount) {
+      mode === 1
+        ? (correct.current = words[index].english)
+        : (correct.current = words[index].finnish);
+    }
 
     question = words.map(({ finnish, english }) => {
       if (mode === 1) {
@@ -70,6 +74,7 @@ const GameScreen = ({ keyword, gameMode, amount }) => {
     return (
       <div>
         <div className="Score">{score}</div>
+
         <div>{question[index]}</div>
         <div>{shuffle(answers)}</div>
       </div>
@@ -81,6 +86,11 @@ const GameScreen = ({ keyword, gameMode, amount }) => {
       setScore(score + 1);
     }
     setIndex(index + 1);
+
+    if (index === amount - 1) {
+      setGameThrough(true);
+      setGameOn(false);
+    }
   };
 
   return (
@@ -95,6 +105,7 @@ const GameScreen = ({ keyword, gameMode, amount }) => {
           </div>
         )}
         {gameOn && Game(gameMode)}
+        {gameThrough && <Results amount={amount} score={score} />}
       </div>
     </div>
   );
