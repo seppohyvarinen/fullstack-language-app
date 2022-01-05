@@ -12,9 +12,23 @@
   background-image: linear-gradient(rgb(148, 122, 219), rgb(218, 205, 253));
 }
 
+.navbar {
+  margin: 10px;
+  margin-bottom: 40px;
+  background-image: linear-gradient(rgb(131, 95, 230), rgb(148, 122, 219));
+
+  border-radius: 5%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.navbar-toggler {
+  position: relative;
+  right: 30px;
+}
+
 .navbar-brand {
   margin-left: 40px;
-  font-size: 1.5rem !important;
+  font-size: 2rem !important;
 }
 
 .nav-link {
@@ -27,6 +41,7 @@
 
 #selectTeacher {
   font-size: xx-large;
+  margin-top: 50px;
   width: 350px;
   height: 350px;
   background-color: rgb(255, 155, 230);
@@ -48,6 +63,7 @@
 }
 
 #selectStudent {
+  margin-top: 50px;
   font-size: xx-large;
   width: 350px;
   height: 350px;
@@ -85,6 +101,14 @@
   background-color: rgb(255, 192, 250);
   border-radius: 20px;
   padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.AddWords button {
+  margin-top: 10px;
 }
 
 .TranslationList {
@@ -94,6 +118,9 @@
   border-radius: 20px;
   padding: 20px;
   overflow: scroll;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .Teacherview {
@@ -115,18 +142,38 @@
 }
 
 .AddButton {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 60px;
 }
 
+.InfoSection {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+
+  max-width: 700px;
+  margin-bottom: 20px;
+}
+
+.Returnbtn {
+  width: 80px;
+  max-height: 100px;
+  border-radius: 20%;
+  font-size: larger;
+}
 .TeacherInfo {
-  text-align: center;
+  text-align: left;
   min-height: 100px;
-  width: 350px;
+  max-width: 500px;
   height: auto;
+  width: auto;
   background-color: rgb(216, 174, 255);
   border-radius: 30px;
   font-size: larger;
+}
+
+.TeacherInfo p {
+  margin: 20px;
 }
 
 .FinEng {

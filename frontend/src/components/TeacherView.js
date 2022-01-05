@@ -55,12 +55,21 @@ const TeacherView = ({ Setmode }) => {
 
   return (
     <div>
-      <table className="TeacherInfo">
-        Opettaja-tilassa voit lisätä uusia käännöksiä
-        <br />
-        tietokantaan!
-      </table>
-      <button onClick={() => Setmode(0)}>Takaisin alkuun</button>
+      <div className="InfoSection">
+        <button className="Returnbtn" onClick={() => Setmode(0)}>
+          &#8592;
+          <br /> Takaisin
+        </button>{" "}
+        <table className="TeacherInfo">
+          <p>
+            {" "}
+            Opettaja-tilassa voit lisätä uusia käännöksiä tietokantaan. Kirjoita
+            sana suomeksi sekä englanniksi ja valitse sanalle sopiva luokka.
+            Paina "Lisää tietokantaan" - nappia tallentaaksesi käännöksen.
+          </p>
+        </table>
+      </div>
+
       <div className="Teacherview">
         <div className="AddWords">
           <AddWords
