@@ -3,7 +3,13 @@ import { useState, useEffect } from "react";
 import Select from "react-select";
 const axios = require("axios").default;
 
-const AddWords = ({ setWords, fetchAll }) => {
+const AddWords = ({
+  setWords,
+  fetchAll,
+  setFilter,
+  handleFetch,
+  filterValue,
+}) => {
   const [fin, setFin] = useState("");
   const [eng, setEng] = useState("");
   const [tagInput, setTagInput] = useState("");
@@ -15,14 +21,19 @@ const AddWords = ({ setWords, fetchAll }) => {
       var response = await axios.get("/translations/tags");
 
       let temp = [];
+      let filterTemp = [];
+      filterTemp.push({ label: "Kaikki sanat", value: "Kaikki sanat" });
 
       var mapped = await response.data.map(({ tag }) => tag);
 
       for (var tag of mapped) {
         temp.push({ label: tag, value: tag });
+        filterTemp.push({ label: tag, value: tag });
       }
 
       setTagArray(temp);
+
+      setFilter(filterTemp);
       console.log(tagArray);
     } catch (error) {
       alert(error);
@@ -60,7 +71,7 @@ const AddWords = ({ setWords, fetchAll }) => {
       setFin("");
       setEng("");
       setTagInput("");
-      fetchAll();
+      handleFetch(filterValue);
     } catch (error) {
       alert(error);
     }

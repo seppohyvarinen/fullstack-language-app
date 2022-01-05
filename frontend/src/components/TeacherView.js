@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import AddWords from "./AddWords";
+import Select from "react-select";
 
 const axios = require("axios").default;
 
 const TeacherView = ({ Setmode }) => {
   const [words, setWords] = useState([]);
+  const [tagsForFilter, setTagsForFilter] = useState([]);
+  const [filterValue, setFilterValue] = useState("");
 
   const fetchAll = async () => {
     try {
@@ -17,6 +20,33 @@ const TeacherView = ({ Setmode }) => {
     } catch (error) {
       alert(error);
     }
+  };
+
+  const fetchByTag = async (t) => {
+    try {
+      var response = await axios.get("/translations", {
+        params: {
+          tag: t.value,
+        },
+      });
+      var mapped = response.data.map(({ finnish, english }) => (
+        <div className="Words">{finnish + " - " + english}</div>
+      ));
+      console.log("mapped: " + mapped);
+      setWords(mapped);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const handleFilter = (e) => {
+    console.log(e);
+    setFilterValue(e);
+    handleFetch(filterValue);
+  };
+
+  const handleFetch = (t) => {
+    t.value === "Kaikki sanat" ? fetchAll() : fetchByTag(t);
   };
 
   useEffect(() => {
@@ -33,10 +63,28 @@ const TeacherView = ({ Setmode }) => {
       <button onClick={() => Setmode(0)}>Takaisin alkuun</button>
       <div className="Teacherview">
         <div className="AddWords">
-          <AddWords setWords={setWords} fetchAll={fetchAll} />
+          <AddWords
+            setWords={setWords}
+            fetchAll={fetchAll}
+            setFilter={setTagsForFilter}
+            handleFetch={handleFetch}
+            filterValue={filterValue}
+          />
         </div>
 
-        <div className="TranslationList">{words}</div>
+        <div className="TranslationList">
+          {" "}
+          <Select
+            options={tagsForFilter}
+            placeholder="Suodata..."
+            onChange={handleFilter}
+            value={filterValue}
+          />
+          <button onClick={() => handleFetch(filterValue)}>
+            Etsi tietokannasta
+          </button>
+          {words}
+        </div>
       </div>
     </div>
   );
