@@ -104,12 +104,7 @@ const AddWords = ({
         onChange={handleTag}
         value={tagInput}
       />
-      <button
-        onClick={() => SaveWord()}
-        style={{ display: "block" }}
-        className="AddButton"
-        type="submit"
-      >
+      <button onClick={() => SaveWord()} className="AddButton" type="submit">
         Lisää sana tietokantaan
       </button>
       <h2>Ei löydy sopivaa tagia? Lisää tästä uusi</h2>
