@@ -5,7 +5,8 @@ const LearningMode = ({ setMode }) => {
   return (
     <div className="Modes">
       <div className="FinEng" onClick={() => setMode(1)}>
-        Opettele sanoja Suomesta Englanniksi
+        <p className="Description">Opettele sanoja Suomesta Englanniksi</p>
+
         <img
           className="Flags"
           src={FinEng}
@@ -14,7 +15,8 @@ const LearningMode = ({ setMode }) => {
       </div>
 
       <div className="EngFin" onClick={() => setMode(2)}>
-        Opettele sanoja Englannista Suomeksi
+        <p className="Description">Opettele sanoja Englannista Suomeksi</p>
+
         <img
           className="Flags"
           src={EngFin}
