@@ -97,7 +97,7 @@ let connections = {
     }),
   findAll: () =>
     new Promise((resolve, reject) => {
-      pool.query("select * from fin_eng", (err, words) => {
+      pool.query("select * from fin_eng order by finnish", (err, words) => {
         if (err) {
           reject("Something went wrong with fetching data, please try again");
         } else {
@@ -136,7 +136,9 @@ let connections = {
   findByTag: (tag) =>
     new Promise((resolve, reject) => {
       pool.query(
-        "select * from fin_eng where tag = " + pool.escape(tag),
+        "select * from fin_eng where tag = " +
+          pool.escape(tag) +
+          " order by finnish",
         (err, words) => {
           if (err) {
             reject("can't find words with the tag " + tag);
