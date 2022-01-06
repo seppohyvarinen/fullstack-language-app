@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navi from "./components/Navi";
 import Home from "./components/Home";
+import Settings from "./components/Settings";
 
 function App() {
   const [homeState, setHomeState] = useState(0);
@@ -23,6 +24,10 @@ function App() {
                   amount={amountState}
                 />
               }
+            />
+            <Route
+              path="/settings"
+              element={<Settings setAmount={setAmountState} />}
             />
           </Routes>
         </div>

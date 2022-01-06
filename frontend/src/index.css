@@ -235,6 +235,7 @@
   font-size: xx-large;
   border-radius: 20px;
   cursor: pointer;
+  transition: 0.8s ease-in-out;
 }
 .Gametag:nth-of-type(4n + 1) {
   background-color: rgb(246, 230, 87);
@@ -263,16 +264,16 @@
 
 .Gametag:hover:nth-of-type(4n + 1),
 .Gametag:nth-of-type(4n + 3):hover {
-  -webkit-animation: wiggle 0.8s infinite;
-  -moz-animation: wiggle 0.8s infinite;
-  animation: wiggle 3s infinite;
+  -webkit-animation: wiggle 2s infinite;
+  -moz-animation: wiggle 2s infinite;
+  animation: wiggle 2s infinite;
 }
 
 .Gametag:hover:nth-of-type(4n + 2),
 .Gametag:nth-of-type(4n + 4):hover {
-  -webkit-animation: wiggle2 0.8s infinite;
-  -moz-animation: wiggle2 0.8s infinite;
-  animation: wiggle2 3s infinite;
+  -webkit-animation: wiggle2 2s infinite;
+  -moz-animation: wiggle2 2s infinite;
+  animation: wiggle2 2s infinite;
 }
 
 .TagList {
