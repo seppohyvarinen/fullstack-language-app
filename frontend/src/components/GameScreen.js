@@ -79,9 +79,10 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
     return (
       <div>
         <div className="Score">{score}</div>
-        <div>{keyword}</div>
-        <div>{question[index]}</div>
-        <div>{shuffle(answers)}</div>
+        <div className="QnA">
+          <div>{question[index]}</div>
+          <div>{shuffle(answers)}</div>
+        </div>
       </div>
     );
   };
