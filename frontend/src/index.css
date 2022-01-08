@@ -310,27 +310,70 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset;
+}
+
+.QnA {
+  display: grid;
+  width: 350px;
+  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  grid-gap: 0.8vw;
+  grid-row-gap: 25px;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .Question {
-  height: 30px;
-  margin: 15px;
+  display: grid;
+  place-items: center;
+  height: 60px;
+
   background-color: rgb(71, 199, 231);
   border-radius: 10px;
-  display: flex;
-  place-items: center;
+
+  width: 250px;
+
+  margin-bottom: 40px;
+  font-size: xx-large;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 .Answer {
-  height: 30px;
+  height: 50px;
+  width: 200px;
   margin: 15px;
-  background-color: rgb(222, 102, 238);
+  padding: 5px;
+  background-color: rgb(232, 240, 128);
   border-radius: 10px;
-  display: flex;
-  place-items: center;
+
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: x-large;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset;
+}
+
+#Correct {
+  background-color: rgb(140, 233, 116);
+}
+
+#Wrong {
+  background-color: rgb(236, 62, 114);
+}
+
+.Answer:hover {
+  transform: scale(0.98);
+  animation: pulse 4s infinite;
 }
 
 .Instructions {
@@ -388,5 +431,27 @@
   }
   100% {
     transform: rotate(0deg);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(0.98);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
+      rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset,
+      0 0 0 0 rgba(243, 165, 250, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
+      rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset,
+      0 0 0 8px rgba(222, 102, 238, 0.219);
+  }
+
+  100% {
+    transform: scale(0.98);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
+      rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset,
+      0 0 0 0 rgba(255, 227, 254, 0.007);
   }
 }
