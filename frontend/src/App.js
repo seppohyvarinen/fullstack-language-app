@@ -27,7 +27,10 @@ function App() {
             />
             <Route
               path="/settings"
-              element={<Settings setAmount={setAmountState} />}
+              exact
+              element={
+                <Settings amount={amountState} setAmount={setAmountState} />
+              }
             />
           </Routes>
         </div>
