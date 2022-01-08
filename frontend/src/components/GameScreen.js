@@ -9,6 +9,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [gameThrough, setGameThrough] = useState(false);
+  const [answerColor, setAnswerColor] = useState("");
   const correct = useRef("");
 
   const handleStartGame = async (k) => {
@@ -63,13 +64,21 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
     answers = words.map(({ finnish, english }) => {
       if (mode === 2) {
         return (
-          <div className="Answer" onClick={() => next(finnish)}>
+          <div
+            className="Answer"
+            id={answerColor}
+            onClick={() => next(finnish)}
+          >
             {finnish}
           </div>
         );
       } else {
         return (
-          <div className="Answer" onClick={() => next(english)}>
+          <div
+            className="Answer"
+            id={answerColor}
+            onClick={() => next(english)}
+          >
             {english}
           </div>
         );
@@ -91,7 +100,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
     if (a === correct.current) {
       setScore(score + 1);
     }
-    setIndex(index + 1);
+    setTimeout(() => setIndex(index + 1), 1000);
 
     if (index === amount - 1) {
       setGameThrough(true);
