@@ -104,8 +104,14 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
       <div className="Screen">
         {!gameOn && !gameThrough && (
           <div className="Instructions">
+            <h2>Ohjeet:</h2>
+            <h4>
+              {" "}
+              Klikkaa oikeaa käännöstä annetuista vaihtoehdoista, yritä saada
+              täydet pisteet!
+            </h4>
             <button onClick={() => handleStartGame(keyword)}>
-              start the game
+              Aloita peli
             </button>
           </div>
         )}
