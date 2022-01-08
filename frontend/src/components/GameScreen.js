@@ -84,23 +84,28 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
         );
       }
     });
+    shuffle(answers);
 
     return (
       <div>
         <div className="Score">{score}</div>
         <div className="QnA">
           <div>{question[index]}</div>
-          <div>{shuffle(answers)}</div>
+          <div>{answers}</div>
         </div>
       </div>
     );
   };
 
   const next = (a) => {
-    if (a === correct.current) {
-      setScore(score + 1);
-    }
-    setTimeout(() => setIndex(index + 1), 1000);
+    const checkForCorrect = (answer) => {
+      if (answer === correct.current) {
+        setScore(score + 1);
+      }
+      setIndex(index + 1);
+    };
+
+    setTimeout(() => checkForCorrect(a), 1000);
 
     if (index === amount - 1) {
       setGameThrough(true);
