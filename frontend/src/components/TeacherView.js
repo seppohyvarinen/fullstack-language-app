@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AddWords from "./AddWords";
 import Select from "react-select";
+import EditModal from "./EditModal";
 
 const axios = require("axios").default;
 
@@ -58,6 +59,7 @@ const TeacherView = ({ Setmode }) => {
 
   return (
     <div>
+      {editModal && <EditModal />}
       <div className="InfoSection">
         <button className="Returnbtn" onClick={() => Setmode(0)}>
           &#8592;
