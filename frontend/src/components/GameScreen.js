@@ -5,6 +5,7 @@ const axios = require("axios").default;
 
 const GameScreen = ({ keyword, gameMode, amount, back }) => {
   const [words, setWords] = useState([]);
+  const [maxAmount, setMaxAmount] = useState(amount);
   const [permanentWords, setPermanentWords] = useState([]);
   const [gameOn, setGameOn] = useState(false);
   const [index, setIndex] = useState(0);
@@ -39,7 +40,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
         setWords(cut);
         setPermanentWords(cut);
       } else {
-        amount = mapped.length;
+        setMaxAmount(mapped.length);
         setWords(mapped);
         setPermanentWords(mapped);
       }
@@ -58,7 +59,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
       needShuffle.current = false;
     }
 
-    if (index < amount) {
+    if (index < maxAmount) {
       mode === 1
         ? (correct.current = permanentWords[index].english)
         : (correct.current = permanentWords[index].finnish);
@@ -118,7 +119,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
         setIndex(index + 1);
 
         userAnswer.current = "";
-        if (index === amount - 1) {
+        if (index === maxAmount - 1) {
           setGameThrough(true);
           setGameOn(false);
         }
@@ -159,7 +160,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
         {gameThrough && (
           <>
             {" "}
-            <Results amount={amount} score={score} />
+            <Results amount={maxAmount} score={score} />
             <button onClick={() => handleStartGame(keyword)}>
               Pelaa Uudelleen
             </button>
