@@ -12,7 +12,7 @@ const Results = ({ score, amount }) => {
 
   return (
     <div className="ResultScreen">
-      <div className="ResultConstant">
+      <div className="ResultsConstant">
         Sait {score} / {amount} pistettä!
       </div>
       <div className="ResultReaction">{reaction}</div>

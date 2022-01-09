@@ -163,10 +163,13 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
           <>
             {" "}
             <Results amount={maxAmount} score={score} />
-            <button onClick={() => handleStartGame(keyword)}>
-              Pelaa Uudelleen
-            </button>
-            <button onClick={() => back(false)}>Palaa valikkoon</button>
+            <div className="ResultScrButtons">
+              {" "}
+              <button onClick={() => handleStartGame(keyword)}>
+                Pelaa Uudelleen
+              </button>
+              <button onClick={() => back(false)}>Palaa valikkoon</button>
+            </div>
           </>
         )}
       </div>
