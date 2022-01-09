@@ -101,7 +101,9 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
       const handleColor = (answer) => {
         var temporary = [...words];
 
-        const iddex = temporary.findIndex((ans) => ans.english === answer);
+        const iddex = temporary.findIndex(
+          (ans) => ans.english === answer || ans.finnish === answer
+        );
         temporary[iddex].color = answerColor.current;
         setWords(temporary);
       };
