@@ -134,12 +134,13 @@
 }
 
 .Words {
-  height: 30px;
+  height: 40px;
   margin: 15px;
-  background-color: bisque;
+  background-color: rgb(243, 230, 109);
   border-radius: 10px;
   display: flex;
-  place-items: center;
+  text-align: center;
+  font-size: x-large;
 }
 
 .AddButton {

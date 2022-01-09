@@ -8,13 +8,16 @@ const TeacherView = ({ Setmode }) => {
   const [words, setWords] = useState([]);
   const [tagsForFilter, setTagsForFilter] = useState([]);
   const [filterValue, setFilterValue] = useState("");
+  const [editModal, setEditModal] = useState(false);
 
   const fetchAll = async () => {
     try {
       var response = await axios.get("/translations");
 
       var mapped = response.data.map(({ finnish, english }) => (
-        <div className="Words">{finnish + " - " + english}</div>
+        <div className="Words" onClick={() => setEditModal(true)}>
+          {finnish + " - " + english}
+        </div>
       ));
       setWords(mapped);
     } catch (error) {
