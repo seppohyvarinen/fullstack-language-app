@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Results from "./Results";
 
 const axios = require("axios").default;
@@ -9,7 +9,9 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [gameThrough, setGameThrough] = useState(false);
-  const [answerColor, setAnswerColor] = useState("");
+  const needShuffle = useRef(true);
+  const userAnswer = useRef("");
+  const answerColor = useRef("");
   const correct = useRef("");
 
   const handleStartGame = async (k) => {
@@ -25,6 +27,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
       var mapped = response.data.map(({ finnish, english }) => ({
         finnish: finnish,
         english: english,
+        color: "",
       }));
 
       console.log(mapped);
@@ -53,7 +56,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
         : (correct.current = words[index].finnish);
     }
 
-    question = words.map(({ finnish, english }) => {
+    question = words.map(({ finnish, english, color }) => {
       if (mode === 1) {
         return <div className="Question">{finnish}</div>;
       } else {
@@ -61,30 +64,64 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
       }
     });
 
-    answers = words.map(({ finnish, english }) => {
+    answers = words.map(({ finnish, english, color }) => {
       if (mode === 2) {
         return (
-          <div
-            className="Answer"
-            id={answerColor}
-            onClick={() => next(finnish)}
-          >
+          <div className="Answer" id={color} onClick={() => next(finnish)}>
             {finnish}
           </div>
         );
       } else {
         return (
-          <div
-            className="Answer"
-            id={answerColor}
-            onClick={() => next(english)}
-          >
+          <div className="Answer" id={color} onClick={() => next(english)}>
             {english}
           </div>
         );
       }
     });
-    shuffle(answers);
+
+    const next = (a) => {
+      userAnswer.current = a;
+
+      if (a === correct.current) {
+        answerColor.current = "Correct";
+      } else {
+        answerColor.current = "Wrong";
+      }
+
+      const handleColor = (answer) => {
+        needShuffle.current = false;
+        var temp = [...words];
+
+        const iddex = temp.findIndex((ans) => ans.english === answer);
+        temp[iddex].color = answerColor.current;
+        setWords(temp);
+      };
+
+      handleColor(a);
+
+      const checkForCorrect = (answer) => {
+        if (answer === correct.current) {
+          setScore(score + 1);
+        }
+        answerColor.current = "";
+        handleColor(answer);
+        needShuffle.current = true;
+
+        setIndex(index + 1);
+
+        userAnswer.current = "";
+        if (index === amount - 1) {
+          setGameThrough(true);
+          setGameOn(false);
+        }
+      };
+
+      setTimeout(() => checkForCorrect(a), 1000);
+    };
+
+    needShuffle.current && shuffle(answers);
+    needShuffle.current = false;
 
     return (
       <div>
@@ -95,22 +132,6 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
         </div>
       </div>
     );
-  };
-
-  const next = (a) => {
-    const checkForCorrect = (answer) => {
-      if (answer === correct.current) {
-        setScore(score + 1);
-      }
-      setIndex(index + 1);
-    };
-
-    setTimeout(() => checkForCorrect(a), 1000);
-
-    if (index === amount - 1) {
-      setGameThrough(true);
-      setGameOn(false);
-    }
   };
 
   return (
@@ -183,6 +204,8 @@ const shuffle = (array) => {
       array[currentIndex],
     ];
   }
+
+  console.log("now shuffling");
 
   return array;
 };
