@@ -5,10 +5,12 @@ const axios = require("axios").default;
 
 const GameScreen = ({ keyword, gameMode, amount, back }) => {
   const [words, setWords] = useState([]);
+  const [permanentWords, setPermanentWords] = useState([]);
   const [gameOn, setGameOn] = useState(false);
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [gameThrough, setGameThrough] = useState(false);
+  const [firstPlay, setFirstPlay] = useState(true);
   const needShuffle = useRef(true);
   const userAnswer = useRef("");
   const answerColor = useRef("");
@@ -17,6 +19,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
   const handleStartGame = async (k) => {
     try {
       setGameThrough(false);
+      setFirstPlay(false);
       setScore(0);
       setIndex(0);
       var response = await axios.get("/translations", {
@@ -30,14 +33,15 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
         color: "",
       }));
 
-      console.log(mapped);
-
       if (mapped.length > amount) {
         var cut = ArrayCutter(mapped, amount);
-        console.log(cut);
+
         setWords(cut);
+        setPermanentWords(cut);
       } else {
+        amount = mapped.length;
         setWords(mapped);
+        setPermanentWords(mapped);
       }
 
       setGameOn(true);
@@ -49,14 +53,18 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
   const Game = (mode) => {
     var question = [];
     var answers = [];
+    if (needShuffle.current) {
+      shuffle(words);
+      needShuffle.current = false;
+    }
 
     if (index < amount) {
       mode === 1
-        ? (correct.current = words[index].english)
-        : (correct.current = words[index].finnish);
+        ? (correct.current = permanentWords[index].english)
+        : (correct.current = permanentWords[index].finnish);
     }
 
-    question = words.map(({ finnish, english, color }) => {
+    question = permanentWords.map(({ finnish, english, color }) => {
       if (mode === 1) {
         return <div className="Question">{finnish}</div>;
       } else {
@@ -90,12 +98,11 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
       }
 
       const handleColor = (answer) => {
-        needShuffle.current = false;
-        var temp = [...words];
+        var temporary = [...words];
 
-        const iddex = temp.findIndex((ans) => ans.english === answer);
-        temp[iddex].color = answerColor.current;
-        setWords(temp);
+        const iddex = temporary.findIndex((ans) => ans.english === answer);
+        temporary[iddex].color = answerColor.current;
+        setWords(temporary);
       };
 
       handleColor(a);
@@ -120,9 +127,6 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
       setTimeout(() => checkForCorrect(a), 1000);
     };
 
-    needShuffle.current && shuffle(answers);
-    needShuffle.current = false;
-
     return (
       <div>
         <div className="Score">{score}</div>
@@ -138,7 +142,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
     <div className="modalBG">
       {" "}
       <div className="Screen">
-        {!gameOn && !gameThrough && (
+        {firstPlay && (
           <div className="Instructions">
             <h2>Ohjeet:</h2>
             <h4>
