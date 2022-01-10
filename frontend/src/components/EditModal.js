@@ -11,6 +11,14 @@ const EditModal = ({ editFin, editEng, setEdit }) => {
   const handleEng = (e) => {
     setEng(e.target.value);
   };
+
+  const saveEdit = (f, e) => {
+    console.log("save");
+  };
+
+  const deleteWord = (f, e) => {
+    console.log("delete");
+  };
   return (
     <div className="modalBG">
       <div className="EditModal">
@@ -24,7 +32,13 @@ const EditModal = ({ editFin, editEng, setEdit }) => {
           <h2> In english </h2>
           <input type={"text"} onChange={handleEng} value={eng}></input>
         </div>
-        <div className="EditButtons"></div>
+        <div className="EditButtons">
+          <button onClick={() => saveEdit(fin, eng)}>Tallenna</button>
+          <button onClick={() => setEdit(false)}>Peruuta</button>
+          <button onClick={() => deleteWord(fin, eng)}>
+            Poista sana tietokannasta
+          </button>
+        </div>
       </div>
     </div>
   );
