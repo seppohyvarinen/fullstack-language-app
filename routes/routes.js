@@ -55,6 +55,10 @@ translations.post("/tag", async (req, res) => {
   }
 });
 
+translations.patch("/", async (req, res) => {
+  console.log(req.body);
+});
+
 translations.delete("/", async (req, res) => {
   console.log("inside delete");
   let word = req.body;

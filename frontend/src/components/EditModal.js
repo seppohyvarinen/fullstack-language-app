@@ -12,6 +12,8 @@ const EditModal = ({
 }) => {
   const [fin, setFin] = useState(editFin);
   const [eng, setEng] = useState(editEng);
+  const [memofin, setMemoFin] = useState(editFin);
+  const [memoeng, setMemoEng] = useState(editEng);
 
   const handleFin = (e) => {
     setFin(e.target.value);
@@ -21,8 +23,15 @@ const EditModal = ({
     setEng(e.target.value);
   };
 
-  const saveEdit = (f, e) => {
-    console.log("save");
+  const saveEdit = async (f, e) => {
+    try {
+      await axios.patch("/translations", {
+        english: memoeng,
+        finnish: memofin,
+        newEnglish: e,
+        newFinnish: f,
+      });
+    } catch (error) {}
   };
 
   const deleteWord = async (f, e) => {
