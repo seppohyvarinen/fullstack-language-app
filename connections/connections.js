@@ -132,6 +132,29 @@ let connections = {
         }
       );
     }),
+  editWord: (word) =>
+    new Promise((resolve, reject) => {
+      pool.query(
+        "update fin_eng set finnish = " +
+          pool.escape(word.newFinnish) +
+          ", english = " +
+          pool.escape(word.newEnglish) +
+          "where finnish = " +
+          pool.escape(word.finnish) +
+          " and english = " +
+          pool.escape(word.english),
+        (err, fin_eng) => {
+          if (err) {
+            reject("data can't be edited for some reason, please try again");
+          }
+          if (fin_eng.affectedRows == 0) {
+            reject("No such word");
+          } else {
+            resolve("Edited word succesfully");
+          }
+        }
+      );
+    }),
 
   findByTag: (tag) =>
     new Promise((resolve, reject) => {
