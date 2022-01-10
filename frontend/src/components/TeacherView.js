@@ -10,6 +10,14 @@ const TeacherView = ({ Setmode }) => {
   const [tagsForFilter, setTagsForFilter] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const [editModal, setEditModal] = useState(false);
+  const [editFin, setEditFin] = useState("");
+  const [editEng, setEditEng] = useState("");
+
+  const handleEdit = (f, e) => {
+    setEditFin(f);
+    setEditEng(e);
+    setEditModal(true);
+  };
 
   const fetchAll = async () => {
     try {
@@ -19,7 +27,7 @@ const TeacherView = ({ Setmode }) => {
         <div
           className="Words"
           title="Klikkaa muokataksesi tai poistaaksesi sana"
-          onClick={() => setEditModal(true)}
+          onClick={() => handleEdit(finnish, english)}
         >
           {finnish + " - " + english}
         </div>
@@ -68,7 +76,9 @@ const TeacherView = ({ Setmode }) => {
 
   return (
     <div>
-      {editModal && <EditModal />}
+      {editModal && (
+        <EditModal editFin={editFin} editEng={editEng} setEdit={setEditModal} />
+      )}
       <div className="InfoSection">
         <button className="Returnbtn" onClick={() => Setmode(0)}>
           &#8592;
