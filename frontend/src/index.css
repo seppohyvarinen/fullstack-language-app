@@ -157,6 +157,25 @@
     rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset;
 }
 
+.EditInputs {
+  position: relative;
+  top: 40px;
+}
+
+.closeEdit {
+  float: right;
+  position: relative;
+  right: 14px;
+  top: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(245, 48, 153);
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset;
+}
+
 .AddButton {
   width: 200px;
   height: 60px;
