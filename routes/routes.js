@@ -56,6 +56,19 @@ translations.post("/tag", async (req, res) => {
   }
 });
 
+translations.delete("/word)", async (req, res) => {
+  let word = req.params.word;
+  try {
+    var response = await connections.deleteWord(word);
+
+    res.statusCode = 204;
+    res.end();
+  } catch (error) {
+    res.statusCode = 404;
+    res.send({ msg: error });
+  }
+});
+
 async function tagFilter(req, res, next) {
   const tag = req.query.tag;
   console.log(tag);

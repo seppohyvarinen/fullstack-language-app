@@ -116,15 +116,18 @@ let connections = {
         }
       });
     }),
-  deleteById: (id) =>
+  deleteWord: (word) =>
     new Promise((resolve, reject) => {
       pool.query(
-        "delete from locations where id = " + pool.escape(id),
-        (err, location) => {
+        "delete from fin_eng where finnish = " +
+          pool.escape(word.finnish) +
+          " and english = " +
+          pool.escape(word.english),
+        (err, fin_eng) => {
           if (err) {
             reject("data can't be deleted for some reason, please try again");
           }
-          if (location.affectedRows == 0) {
+          if (fin_eng.affectedRows == 0) {
             reject("No such id: " + id);
           } else {
             resolve("Deleted id: " + id + " succesfully");
