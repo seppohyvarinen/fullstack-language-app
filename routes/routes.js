@@ -55,6 +55,19 @@ translations.post("/tag", async (req, res) => {
   }
 });
 
+translations.post("/auth", async (req, res) => {
+  let tmp = req.body;
+
+  try {
+    let save = await connections.authenticate(tmp);
+    res.statusCode = 201;
+    res.send(save);
+  } catch (error) {
+    res.statusCode = 400;
+    res.send(`${res.statusCode} Bad Request: ${error}`);
+  }
+});
+
 translations.patch("/", async (req, res) => {
   let word = req.body;
 
