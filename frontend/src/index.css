@@ -134,13 +134,27 @@
 }
 
 .Words {
-  height: 40px;
+  height: 42px;
   margin: 15px;
   background-color: rgb(243, 230, 109);
   border-radius: 10px;
   display: flex;
   text-align: center;
-  font-size: x-large;
+  font-size: larger;
+  cursor: pointer;
+}
+
+.EditModal {
+  width: 400px;
+  height: 600px;
+  border-radius: 20px;
+  background-color: rgb(255, 227, 254);
+
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset;
 }
 
 .AddButton {

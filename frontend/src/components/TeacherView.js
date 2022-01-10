@@ -16,7 +16,11 @@ const TeacherView = ({ Setmode }) => {
       var response = await axios.get("/translations");
 
       var mapped = response.data.map(({ finnish, english }) => (
-        <div className="Words" onClick={() => setEditModal(true)}>
+        <div
+          className="Words"
+          title="Klikkaa muokataksesi tai poistaaksesi sana"
+          onClick={() => setEditModal(true)}
+        >
           {finnish + " - " + english}
         </div>
       ));
@@ -34,7 +38,12 @@ const TeacherView = ({ Setmode }) => {
         },
       });
       var mapped = response.data.map(({ finnish, english }) => (
-        <div className="Words">{finnish + " - " + english}</div>
+        <div
+          className="Words"
+          title="Klikkaa muokataksesi tai poistaaksesi sana"
+        >
+          {finnish + " - " + english}
+        </div>
       ));
       console.log("mapped: " + mapped);
       setWords(mapped);
