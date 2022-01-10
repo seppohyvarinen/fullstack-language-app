@@ -162,6 +162,11 @@
   top: 40px;
 }
 
+.EditButtons {
+  position: relative;
+  top: 200px;
+}
+
 .closeEdit {
   float: right;
   position: relative;
