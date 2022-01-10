@@ -59,11 +59,10 @@ translations.post("/auth", async (req, res) => {
   let tmp = req.body;
 
   try {
-    let save = await connections.authenticate(tmp);
-    res.statusCode = 201;
-    res.send(save);
+    let auth = await connections.authenticate(tmp);
+    res.send(auth);
   } catch (error) {
-    res.statusCode = 400;
+    res.statusCode = 401;
     res.send(`${res.statusCode} Bad Request: ${error}`);
   }
 });
