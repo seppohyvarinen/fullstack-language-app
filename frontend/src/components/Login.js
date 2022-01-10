@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const axios = require("axios").default;
+
 const Login = ({ Setmode }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -12,8 +14,18 @@ const Login = ({ Setmode }) => {
     setPassword(e.target.value);
   };
 
-  const handleAuth = () => {
-    Setmode(3);
+  const handleAuth = async () => {
+    try {
+      var response = await axios.post("/translations/auth", {
+        username: userName,
+        password: password,
+      });
+      if (response.data.length !== 0) {
+        Setmode(3);
+      }
+    } catch (error) {
+      alert("wssup");
+    }
   };
   return (
     <div className="modalBG">
