@@ -49,6 +49,7 @@ const TeacherView = ({ Setmode }) => {
         <div
           className="Words"
           title="Klikkaa muokataksesi tai poistaaksesi sana"
+          onClick={() => handleEdit(finnish, english)}
         >
           {finnish + " - " + english}
         </div>
@@ -77,7 +78,14 @@ const TeacherView = ({ Setmode }) => {
   return (
     <div>
       {editModal && (
-        <EditModal editFin={editFin} editEng={editEng} setEdit={setEditModal} />
+        <EditModal
+          fetchAll={fetchAll}
+          fetchByTag={fetchByTag}
+          editFin={editFin}
+          editEng={editEng}
+          setEdit={setEditModal}
+          filterValue={filterValue}
+        />
       )}
       <div className="InfoSection">
         <button className="Returnbtn" onClick={() => Setmode(0)}>

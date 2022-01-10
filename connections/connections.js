@@ -76,10 +76,8 @@ let connections = {
     }),
   saveTag: (tag) =>
     new Promise((resolve, reject) => {
-      console.log(tag);
       var check = validator.validate(tag, tagSchema);
       if (check.errors.length === 0) {
-        console.log("inside sql query");
         var sql =
           "insert into tags (tag) values (" + pool.escape(tag.tag) + ")";
         pool.query(sql, (err) => {
@@ -101,7 +99,6 @@ let connections = {
         if (err) {
           reject("Something went wrong with fetching data, please try again");
         } else {
-          console.log(words);
           resolve(words);
         }
       });
@@ -120,17 +117,17 @@ let connections = {
     new Promise((resolve, reject) => {
       pool.query(
         "delete from fin_eng where finnish = " +
-          pool.escape(word.finnish) +
+          pool.escape(word.finnish.f) +
           " and english = " +
-          pool.escape(word.english),
+          pool.escape(word.english.e),
         (err, fin_eng) => {
           if (err) {
             reject("data can't be deleted for some reason, please try again");
           }
           if (fin_eng.affectedRows == 0) {
-            reject("No such id: " + id);
+            reject("No such word");
           } else {
-            resolve("Deleted id: " + id + " succesfully");
+            resolve("Deleted word succesfully");
           }
         }
       );
