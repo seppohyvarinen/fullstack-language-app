@@ -26,6 +26,9 @@ const EditModal = ({ editFin, editEng, setEdit }) => {
           {" "}
           X{" "}
         </button>
+        <h2 className="EditHeader">
+          Muokkaa käännöstä tai poista se kokonaan tietokannasta
+        </h2>
         <div className="EditInputs">
           <h2> Suomeksi </h2>
           <input type={"text"} onChange={handleFin} value={fin}></input>
@@ -33,9 +36,11 @@ const EditModal = ({ editFin, editEng, setEdit }) => {
           <input type={"text"} onChange={handleEng} value={eng}></input>
         </div>
         <div className="EditButtons">
-          <button onClick={() => saveEdit(fin, eng)}>Tallenna</button>
+          <button className="save" onClick={() => saveEdit(fin, eng)}>
+            Tallenna
+          </button>
           <button onClick={() => setEdit(false)}>Peruuta</button>
-          <button onClick={() => deleteWord(fin, eng)}>
+          <button className="delete" onClick={() => deleteWord(fin, eng)}>
             Poista sana tietokannasta
           </button>
         </div>
