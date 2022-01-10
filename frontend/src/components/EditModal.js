@@ -1,6 +1,15 @@
 import { useState } from "react";
 
-const EditModal = ({ editFin, editEng, setEdit }) => {
+const axios = require("axios").default;
+
+const EditModal = ({
+  editFin,
+  editEng,
+  setEdit,
+  fetchAll,
+  filterValue,
+  fetchByTag,
+}) => {
   const [fin, setFin] = useState(editFin);
   const [eng, setEng] = useState(editEng);
 
@@ -16,7 +25,22 @@ const EditModal = ({ editFin, editEng, setEdit }) => {
     console.log("save");
   };
 
-  const deleteWord = (f, e) => {
+  const deleteWord = async (f, e) => {
+    try {
+      await axios.delete("/translations", {
+        data: { finnish: { f }, english: { e } },
+      });
+
+      if (filterValue === "Kaikki sanat" || filterValue.length === 0) {
+        await fetchAll();
+      } else {
+        await fetchByTag(filterValue);
+      }
+
+      setEdit(false);
+    } catch (error) {
+      alert(error);
+    }
     console.log("delete");
   };
   return (
@@ -40,7 +64,13 @@ const EditModal = ({ editFin, editEng, setEdit }) => {
             Tallenna
           </button>
           <button onClick={() => setEdit(false)}>Peruuta</button>
-          <button className="delete" onClick={() => deleteWord(fin, eng)}>
+          <button
+            className="delete"
+            onClick={() =>
+              window.confirm(`Poista sana tietokannasta? `) &&
+              deleteWord(fin, eng)
+            }
+          >
             Poista sana tietokannasta
           </button>
         </div>

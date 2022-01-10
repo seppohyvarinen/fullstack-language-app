@@ -44,7 +44,6 @@ translations.post("/", async (req, res) => {
 
 translations.post("/tag", async (req, res) => {
   let tmp = req.body;
-  console.log("taghere");
 
   try {
     let save = await connections.saveTag(tmp);
@@ -56,8 +55,10 @@ translations.post("/tag", async (req, res) => {
   }
 });
 
-translations.delete("/word)", async (req, res) => {
-  let word = req.params.word;
+translations.delete("/", async (req, res) => {
+  console.log("inside delete");
+  let word = req.body;
+  console.log(word);
   try {
     var response = await connections.deleteWord(word);
 
@@ -71,7 +72,6 @@ translations.delete("/word)", async (req, res) => {
 
 async function tagFilter(req, res, next) {
   const tag = req.query.tag;
-  console.log(tag);
 
   if (tag !== undefined) {
     try {
