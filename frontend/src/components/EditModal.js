@@ -31,6 +31,13 @@ const EditModal = ({
         newEnglish: e,
         newFinnish: f,
       });
+      if (filterValue === "Kaikki sanat" || filterValue.length === 0) {
+        await fetchAll();
+      } else {
+        await fetchByTag(filterValue);
+      }
+
+      setEdit(false);
     } catch (error) {}
   };
 

@@ -56,7 +56,17 @@ translations.post("/tag", async (req, res) => {
 });
 
 translations.patch("/", async (req, res) => {
-  console.log(req.body);
+  let word = req.body;
+
+  try {
+    var response = await connections.editWord(word);
+
+    res.statusCode = 200;
+    res.end();
+  } catch (error) {
+    res.statusCode = 404;
+    res.send({ msg: error });
+  }
 });
 
 translations.delete("/", async (req, res) => {
