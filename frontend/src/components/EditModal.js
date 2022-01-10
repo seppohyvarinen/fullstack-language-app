@@ -36,9 +36,13 @@ const EditModal = ({
       } else {
         await fetchByTag(filterValue);
       }
+      setMemoEng("");
+      setMemoFin("");
 
       setEdit(false);
-    } catch (error) {}
+    } catch (error) {
+      alert(error);
+    }
   };
 
   const deleteWord = async (f, e) => {
