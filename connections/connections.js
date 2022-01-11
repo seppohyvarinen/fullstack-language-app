@@ -52,6 +52,12 @@ pool.on("release", function (connection) {
 });
 
 let connections = {
+  /**
+   * This function is called to save a new word to fin_eng translation database.
+   * @param {Object} translation The request body.
+   * @returns {Promise}
+   */
+
   save: (translation) =>
     new Promise((resolve, reject) => {
       var check = validator.validate(translation, translationSchema);
@@ -76,6 +82,12 @@ let connections = {
         reject(check.errors);
       }
     }),
+
+  /**
+   * This function is used to save a new tag to tags table in the database.
+   * @param {Object} tag The request body.
+   * @returns {Promise}
+   */
   saveTag: (tag) =>
     new Promise((resolve, reject) => {
       var check = validator.validate(tag, tagSchema);
@@ -95,6 +107,11 @@ let connections = {
         reject(check.errors);
       }
     }),
+
+  /**
+   * This function is used to fetch all data from the fin_eng table of the database.
+   * @returns {Promise} resolves all translations from the database
+   */
   findAll: () =>
     new Promise((resolve, reject) => {
       pool.query("select * from fin_eng order by finnish", (err, words) => {
@@ -105,6 +122,11 @@ let connections = {
         }
       });
     }),
+
+  /**
+   * This function is used to fetch all tags from the tags table of the database
+   * @returns {Promise} resolves all tags from the tags table.
+   */
   findTags: () =>
     new Promise((resolve, reject) => {
       pool.query("select * from tags", (err, locations) => {
@@ -115,6 +137,12 @@ let connections = {
         }
       });
     }),
+
+  /**
+   * This function is used to delete translations from the database.
+   * @param {Object} word The request body
+   * @returns {Promise} resolves information that deletion was succesful.
+   */
   deleteWord: (word) =>
     new Promise((resolve, reject) => {
       pool.query(
@@ -134,6 +162,12 @@ let connections = {
         }
       );
     }),
+
+  /**
+   * This function is used for authentication, it searches trans_app database for matching username and password
+   * @param {Object} body Request body
+   * @returns {Promise} resolves the result if matches were found. Rejects false.
+   */
 
   authenticate: (body) =>
     new Promise((resolve, reject) => {
