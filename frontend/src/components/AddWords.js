@@ -87,6 +87,7 @@ const AddWords = ({
     try {
       await axios.post("/translations/tag", {
         tag: newTag,
+        token: token,
       });
 
       setNewTag("");

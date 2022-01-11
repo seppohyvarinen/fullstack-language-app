@@ -37,6 +37,7 @@ const Login = ({ Setmode, setToken }) => {
         {" "}
         <div className="EditInputs">
           <h2> Käyttäjätunnus </h2>
+
           <input
             type={"text"}
             onChange={handleUsername}
@@ -44,7 +45,7 @@ const Login = ({ Setmode, setToken }) => {
           ></input>
           <h2> Salasana </h2>
           <input
-            type={"text"}
+            type={"password"}
             onChange={handlePassword}
             value={password}
           ></input>
