@@ -9,8 +9,6 @@ const { createTokens, validateToken } = require("../JWT/JWT.js");
 translations.use(tagFilter);
 
 translations.get("/", async (req, res) => {
-  console.log("was this called");
-
   try {
     let all = await connections.findAll();
     res.send(all);
@@ -21,7 +19,6 @@ translations.get("/", async (req, res) => {
 });
 
 translations.get("/tags", async (req, res) => {
-  console.log("here");
   try {
     let tags = await connections.findTags();
     res.send(tags);
@@ -60,16 +57,11 @@ translations.post("/tag", validateToken, async (req, res) => {
 translations.post("/auth", async (req, res) => {
   let tmp = req.body;
 
-  console.log("req: " + tmp);
-
   try {
     let auth = await connections.authenticate(tmp);
 
-    console.log("auth: " + auth.length);
     if (auth.length !== 0) {
       const accessToken = createTokens(tmp);
-
-      console.log(accessToken);
 
       res.json({ token: accessToken });
     } else {
@@ -96,9 +88,8 @@ translations.patch("/", validateToken, async (req, res) => {
 });
 
 translations.delete("/", validateToken, async (req, res) => {
-  console.log("inside delete");
   let word = req.body;
-  console.log(word);
+
   try {
     var response = await connections.deleteWord(word);
 
@@ -124,7 +115,6 @@ async function tagFilter(req, res, next) {
     }
   } else {
     next();
-    console.log("why here");
   }
 }
 

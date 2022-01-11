@@ -22,7 +22,7 @@ const createTokens = (user) => {
  * @param {Object} req the request object
  * @param {*} res response object
  * @param {*} next next function to move to next middleware/function.
- * @returns next() if validation is succesful, otherwise statuscode 400.
+ * @returns {next} next() if validation is succesful, otherwise statuscode 400.
  */
 
 const validateToken = (req, res, next) => {
