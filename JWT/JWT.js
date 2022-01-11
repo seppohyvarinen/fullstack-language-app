@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 /**
  * This function creates a new JWT access token used for authentication
@@ -8,7 +9,7 @@ const jwt = require("jsonwebtoken");
 const createTokens = (user) => {
   const accessToken = jwt.sign(
     { payload: { username: user.username } },
-    "jwtsecret"
+    process.env.SECRET
   );
 
   console.log(accessToken);
@@ -35,7 +36,7 @@ const validateToken = (req, res, next) => {
   }
 
   try {
-    const validateToken = jwt.verify(accessToken, "jwtsecret");
+    const validateToken = jwt.verify(accessToken, process.env.SECRET);
 
     if (validateToken) {
       req.authenticated = true;
