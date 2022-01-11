@@ -10,13 +10,16 @@ const translationSchema = {
     finnish: {
       type: "string",
       pattern: ".*",
+      minLength: 1,
     },
     english: {
       type: "string",
+      minLength: 1,
     },
 
     tag: {
       type: "string",
+      minLength: 1,
     },
   },
 };
@@ -51,7 +54,6 @@ pool.on("release", function (connection) {
 let connections = {
   save: (translation) =>
     new Promise((resolve, reject) => {
-      console.log(translation);
       var check = validator.validate(translation, translationSchema);
       if (check.errors.length === 0) {
         console.log("inside sql query");
