@@ -4,6 +4,8 @@ var translations = express.Router();
 
 var connections = require("../connections/connections.js");
 
+const { createTokens } = require("../connections/JWT/JWT.js");
+
 translations.use(tagFilter);
 
 translations.get("/", async (req, res) => {
@@ -60,7 +62,15 @@ translations.post("/auth", async (req, res) => {
 
   try {
     let auth = await connections.authenticate(tmp);
-    res.send(auth);
+    if (auth.length !== 0) {
+      const accessToken = createTokens(tmp);
+
+      res.cookie("access-token", accessToken, {
+        maxAge: 400,
+      });
+    } else {
+      res.send("false");
+    }
   } catch (error) {
     res.statusCode = 401;
     res.send(`${res.statusCode} Bad Request: ${error}`);
