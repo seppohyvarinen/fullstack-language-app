@@ -43,9 +43,9 @@ const WordGame = ({ gameMode, amount }) => {
       )}
       {!gameOn && (
         <div className="GameMenu">
-          You are playing with game mode {gameMode}
-          game screen is on {gameOn}
-          keyword is {keyword}
+          <div className="MenuInfo">
+            Valitse aihe mistä haluat opetella sanoja!
+          </div>
           <div className="TagList">{tags}</div>
         </div>
       )}
