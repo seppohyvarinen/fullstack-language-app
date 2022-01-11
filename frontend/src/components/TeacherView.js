@@ -5,7 +5,7 @@ import EditModal from "./EditModal";
 
 const axios = require("axios").default;
 
-const TeacherView = ({ Setmode }) => {
+const TeacherView = ({ Setmode, token }) => {
   const [words, setWords] = useState([]);
   const [tagsForFilter, setTagsForFilter] = useState([]);
   const [filterValue, setFilterValue] = useState("");
@@ -110,6 +110,7 @@ const TeacherView = ({ Setmode }) => {
             setFilter={setTagsForFilter}
             handleFetch={handleFetch}
             filterValue={filterValue}
+            token={token}
           />
         </div>
 

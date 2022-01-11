@@ -6,13 +6,14 @@ import Login from "./Login";
 
 const Home = ({ state, amount }) => {
   const [mode, Setmode] = useState(state);
+  const [token, setToken] = useState("");
 
   return (
     <div>
       {mode === 0 && <ModeSelect Setmode={Setmode} />}
-      {mode === 1 && <Login Setmode={Setmode} />}
+      {mode === 1 && <Login Setmode={Setmode} setToken={setToken} />}
       {mode === 2 && <StudentView Setmode={Setmode} amount={amount} />}
-      {mode === 3 && <TeacherView Setmode={Setmode} />}
+      {mode === 3 && <TeacherView token={token} Setmode={Setmode} />}
     </div>
   );
 };

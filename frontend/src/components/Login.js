@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const axios = require("axios").default;
 
-const Login = ({ Setmode }) => {
+const Login = ({ Setmode, setToken }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,8 +20,12 @@ const Login = ({ Setmode }) => {
         username: userName,
         password: password,
       });
-      if (response.data.length !== 0) {
+      console.log(response.data.token);
+      if (response.data.token) {
+        setToken(response.data.token);
         Setmode(3);
+      } else {
+        alert("Tarkista käyttäjätunnus ja salasana");
       }
     } catch (error) {
       alert("wssup");
