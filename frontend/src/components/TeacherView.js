@@ -5,7 +5,7 @@ import EditModal from "./EditModal";
 
 const axios = require("axios").default;
 
-const TeacherView = ({ Setmode, token }) => {
+const TeacherView = ({ Setmode, token, setToken }) => {
   const [words, setWords] = useState([]);
   const [tagsForFilter, setTagsForFilter] = useState([]);
   const [filterValue, setFilterValue] = useState("");
@@ -75,6 +75,11 @@ const TeacherView = ({ Setmode, token }) => {
     fetchAll();
   }, []);
 
+  const handleLogout = () => {
+    setToken("");
+    Setmode(0);
+  };
+
   return (
     <div>
       {editModal && (
@@ -89,7 +94,7 @@ const TeacherView = ({ Setmode, token }) => {
         />
       )}
       <div className="InfoSection">
-        <button className="Returnbtn" onClick={() => Setmode(0)}>
+        <button className="Returnbtn" onClick={() => handleLogout()}>
           &#8592;
           <br /> Takaisin
         </button>{" "}

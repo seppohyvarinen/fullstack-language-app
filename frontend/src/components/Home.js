@@ -19,7 +19,9 @@ const Home = ({ state, amount }) => {
       {mode === 0 && <ModeSelect Setmode={Setmode} />}
       {mode === 1 && <Login Setmode={Setmode} setToken={setToken} />}
       {mode === 2 && <StudentView Setmode={Setmode} amount={amount} />}
-      {mode === 3 && <TeacherView token={token} Setmode={Setmode} />}
+      {mode === 3 && (
+        <TeacherView token={token} setToken={setToken} Setmode={Setmode} />
+      )}
     </div>
   );
 };
