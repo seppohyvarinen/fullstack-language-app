@@ -62,18 +62,22 @@ const AddWords = ({
   };
 
   const SaveWord = async () => {
-    try {
-      await axios.post("/translations", {
-        finnish: fin,
-        english: eng,
-        tag: tagInput.label,
-      });
-      setFin("");
-      setEng("");
-      setTagInput("");
-      handleFetch(filterValue);
-    } catch (error) {
-      alert(error);
+    if (fin.length !== 0 && eng.length !== 0 && tagInput.length !== 0) {
+      try {
+        await axios.post("/translations", {
+          finnish: fin,
+          english: eng,
+          tag: tagInput.label,
+        });
+        setFin("");
+        setEng("");
+        setTagInput("");
+        handleFetch(filterValue);
+      } catch (error) {
+        alert(error);
+      }
+    } else {
+      alert("Tarkista, että täytit kaikki kohdat!");
     }
   };
 
