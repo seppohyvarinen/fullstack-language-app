@@ -44,7 +44,7 @@ translations.post("/", validateToken, async (req, res) => {
   }
 });
 
-translations.post("/tag", async (req, res) => {
+translations.post("/tag", validateToken, async (req, res) => {
   let tmp = req.body;
 
   try {
@@ -65,7 +65,7 @@ translations.post("/auth", async (req, res) => {
   try {
     let auth = await connections.authenticate(tmp);
 
-    console.log("auth: " + auth);
+    console.log("auth: " + auth.length);
     if (auth.length !== 0) {
       const accessToken = createTokens(tmp);
 
@@ -81,7 +81,7 @@ translations.post("/auth", async (req, res) => {
   }
 });
 
-translations.patch("/", async (req, res) => {
+translations.patch("/", validateToken, async (req, res) => {
   let word = req.body;
 
   try {
@@ -95,7 +95,7 @@ translations.patch("/", async (req, res) => {
   }
 });
 
-translations.delete("/", async (req, res) => {
+translations.delete("/", validateToken, async (req, res) => {
   console.log("inside delete");
   let word = req.body;
   console.log(word);

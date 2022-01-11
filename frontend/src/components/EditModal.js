@@ -9,6 +9,7 @@ const EditModal = ({
   fetchAll,
   filterValue,
   fetchByTag,
+  token,
 }) => {
   const [fin, setFin] = useState(editFin);
   const [eng, setEng] = useState(editEng);
@@ -30,6 +31,7 @@ const EditModal = ({
         finnish: memofin,
         newEnglish: e,
         newFinnish: f,
+        token: token,
       });
       if (filterValue === "Kaikki sanat" || filterValue.length === 0) {
         await fetchAll();
@@ -47,9 +49,11 @@ const EditModal = ({
 
   const deleteWord = async (f, e) => {
     try {
-      await axios.delete("/translations", {
-        data: { finnish: { f }, english: { e } },
+      let what = await axios.delete("/translations", {
+        data: { finnish: { f }, english: { e }, token: token },
       });
+
+      console.log(what);
 
       if (filterValue === "Kaikki sanat" || filterValue.length === 0) {
         await fetchAll();

@@ -12,6 +12,7 @@ const createTokens = (user) => {
 };
 
 const validateToken = (req, res, next) => {
+  console.log("body: " + req);
   console.log("token: " + req.body.token);
   const accessToken = req.body.token;
 
