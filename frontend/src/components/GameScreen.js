@@ -132,7 +132,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
 
     return (
       <div>
-        <div className="Score">{score}</div>
+        <div className="Score">Pisteet: {score}</div>
         <div className="QnA">
           <div>{question[index]}</div>
           <div>{answers}</div>
