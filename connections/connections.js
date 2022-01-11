@@ -225,30 +225,6 @@ let connections = {
         }
       );
     }),
-  sortBy: (keyword, order) =>
-    new Promise((resolve, reject) => {
-      if (
-        (keyword == "latitude" || keyword == "longitude") &&
-        (order == "asc" || order == "desc")
-      ) {
-        pool.query(
-          `select * from locations order by ${keyword} ${order}`,
-          [keyword, order],
-
-          (err, location) => {
-            if (err) {
-              reject("something went wrong with sorting");
-            } else {
-              resolve(location);
-            }
-          }
-        );
-      } else {
-        reject(
-          `check your input for sorting: use "latitude" or "longitude" for keyword and "asc" or "desc" for order `
-        );
-      }
-    }),
 };
 
 module.exports = connections;
