@@ -1,6 +1,11 @@
 const jwt = require("jsonwebtoken");
+
+/**
+ * This function creates a new JWT access token used for authentication
+ * @param {Object} user contains username used as payload in creating a new token
+ * @returns {String} the access token
+ */
 const createTokens = (user) => {
-  console.log("user: " + user);
   const accessToken = jwt.sign(
     { payload: { username: user.username } },
     "jwtsecret"
@@ -10,6 +15,15 @@ const createTokens = (user) => {
 
   return accessToken;
 };
+
+/**
+ * This function is used as middleware in functions that modify the database in any manner. The function verifies that
+ * the received token matches the access token created at the server side.
+ * @param {Object} req the request object
+ * @param {*} res response object
+ * @param {*} next next function to move to next middleware/function.
+ * @returns next() if validation is succesful, otherwise statuscode 400.
+ */
 
 const validateToken = (req, res, next) => {
   console.log("body: " + req);
