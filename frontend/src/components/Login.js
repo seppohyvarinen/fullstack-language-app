@@ -34,7 +34,7 @@ const Login = ({ Setmode, setToken }) => {
   return (
     <div className="modalBG">
       <div className="LoginScreen">
-        {" "}
+        Anna käyttäjätunnus ja salasana kirjautuaksesi opettaja-tilaan
         <div className="EditInputs">
           <h2> Käyttäjätunnus </h2>
 
@@ -50,7 +50,7 @@ const Login = ({ Setmode, setToken }) => {
             value={password}
           ></input>
         </div>
-        <div className="EditButtons">
+        <div className="EditButtons" id="Login">
           <button onClick={() => handleAuth()}>Kirjaudu</button>
           <button onClick={() => Setmode(0)}>Takaisin</button>
         </div>

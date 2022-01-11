@@ -177,6 +177,11 @@
   grid-gap: 5px;
 }
 
+#Login {
+  position: relative;
+  top: 160px;
+}
+
 .EditButtons button {
   border-radius: 10px;
 }
