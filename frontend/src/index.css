@@ -392,6 +392,14 @@
     rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset;
 }
 
+.Score {
+  font-size: x-large;
+  float: right;
+  margin-bottom: 5px;
+  position: relative;
+  right: 10px;
+}
+
 .LoginScreen {
   width: 400px;
   height: 400px;
