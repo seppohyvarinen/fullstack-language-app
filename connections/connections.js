@@ -186,6 +186,12 @@ let connections = {
         }
       );
     }),
+
+  /**
+   * This function is used to edit words in the database.
+   * @param {Object} word Object containing necessary key-value pairs to update a translation in database.
+   * @returns {Promise} resolves information about succesful editing. Rejects err and if word is not found.
+   */
   editWord: (word) =>
     new Promise((resolve, reject) => {
       pool.query(
@@ -209,6 +215,12 @@ let connections = {
         }
       );
     }),
+
+  /**
+   * This function searches translations from the database based on the provided tag.
+   * @param {any} tag Contains the tag that is search parameter in the query
+   * @returns {Promise} resolves the translations that match the provided tag. Rejects if no translations can be found.
+   */
 
   findByTag: (tag) =>
     new Promise((resolve, reject) => {
