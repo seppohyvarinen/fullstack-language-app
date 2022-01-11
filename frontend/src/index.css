@@ -539,6 +539,11 @@
   font-size: larger;
 }
 
+.Settings {
+  font-size: xx-large;
+  text-align: center;
+}
+
 @keyframes wiggle {
   0% {
     transform: rotate(0deg);

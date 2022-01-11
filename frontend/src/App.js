@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navi from "./components/Navi";
 import Home from "./components/Home";
 import Settings from "./components/Settings";
+import About from "./components/About";
 
 /**
  * This function is the main component of the translation application.
@@ -37,6 +38,13 @@ function App() {
               exact
               element={
                 <Settings amount={amountState} setAmount={setAmountState} />
+              }
+            />
+            <Route
+              path="/about"
+              exact
+              element={
+                <About amount={amountState} setAmount={setAmountState} />
               }
             />
           </Routes>
