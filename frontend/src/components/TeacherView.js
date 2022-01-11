@@ -85,6 +85,7 @@ const TeacherView = ({ Setmode, token }) => {
           editEng={editEng}
           setEdit={setEditModal}
           filterValue={filterValue}
+          token={token}
         />
       )}
       <div className="InfoSection">

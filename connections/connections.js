@@ -139,12 +139,14 @@ let connections = {
     new Promise((resolve, reject) => {
       pool.query(
         "select * from trans_app where username = " +
-          pool.escape(body.username),
-        +" and password = " + pool.escape(body.password),
+          pool.escape(body.username) +
+          " and password = " +
+          pool.escape(body.password),
         (err, result) => {
           if (err) {
             reject(false);
           } else {
+            console.log("asa");
             resolve(result);
           }
         }
