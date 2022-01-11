@@ -4,6 +4,12 @@ import TeacherView from "./TeacherView";
 import StudentView from "./StudentView";
 import Login from "./Login";
 
+/**
+ * @component
+ * @param {*} param0
+ * @returns
+ */
+
 const Home = ({ state, amount }) => {
   const [mode, Setmode] = useState(state);
   const [token, setToken] = useState("");
