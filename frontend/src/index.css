@@ -191,6 +191,10 @@
   color: white;
 }
 
+.ReturnToMainMenu {
+  float: right;
+}
+
 .closeEdit {
   float: right;
   position: relative;
@@ -224,6 +228,11 @@
   max-height: 100px;
   border-radius: 20%;
   font-size: larger;
+}
+
+#Menuscreen {
+  position: relative;
+  left: 75%;
 }
 .TeacherInfo {
   text-align: left;
