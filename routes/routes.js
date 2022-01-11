@@ -4,7 +4,7 @@ var translations = express.Router();
 
 var connections = require("../connections/connections.js");
 
-const { createTokens, validateToken } = require("../connections/JWT/JWT.js");
+const { createTokens, validateToken } = require("../JWT/JWT.js");
 
 translations.use(tagFilter);
 
