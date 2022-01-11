@@ -9,6 +9,7 @@ const AddWords = ({
   setFilter,
   handleFetch,
   filterValue,
+  token,
 }) => {
   const [fin, setFin] = useState("");
   const [eng, setEng] = useState("");
@@ -68,6 +69,7 @@ const AddWords = ({
           finnish: fin,
           english: eng,
           tag: tagInput.label,
+          token: token,
         });
         setFin("");
         setEng("");

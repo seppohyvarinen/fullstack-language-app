@@ -4,7 +4,7 @@ var translations = express.Router();
 
 var connections = require("../connections/connections.js");
 
-const { createTokens } = require("../connections/JWT/JWT.js");
+const { createTokens, validateToken } = require("../connections/JWT/JWT.js");
 
 translations.use(tagFilter);
 
@@ -31,7 +31,7 @@ translations.get("/tags", async (req, res) => {
   }
 });
 
-translations.post("/", async (req, res) => {
+translations.post("/", validateToken, async (req, res) => {
   let tmp = req.body;
 
   try {
@@ -60,14 +60,18 @@ translations.post("/tag", async (req, res) => {
 translations.post("/auth", async (req, res) => {
   let tmp = req.body;
 
+  console.log("req: " + tmp);
+
   try {
     let auth = await connections.authenticate(tmp);
+
+    console.log("auth: " + auth);
     if (auth.length !== 0) {
       const accessToken = createTokens(tmp);
 
-      res.cookie("access-token", accessToken, {
-        maxAge: 400,
-      });
+      console.log(accessToken);
+
+      res.json({ token: accessToken });
     } else {
       res.send("false");
     }
