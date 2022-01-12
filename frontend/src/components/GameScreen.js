@@ -10,7 +10,8 @@ const axios = require("axios").default;
  * @param {Number} gameMode is the numeric value of gameMode that defines whether game is played fin-eng or eng-fin.
  * @param {Number} amount is the amount of words used in the game.
  * @param {boolean} back is the state from previous component used to return from the game screen.
- * @returns
+ * @returns modal that contains all the divs needed for player to play the game. When game is through, Results component
+ * is rendered.
  */
 
 const GameScreen = ({ keyword, gameMode, amount, back }) => {
@@ -30,6 +31,7 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
   /**
    * Async function that is called when starting or replaying the game.
    * Fetches desired words from the database with axios.get request. Words are then mapped to Words and permanentWords states.
+   * Also cuts the result array to amount received as props.
    * @param k is the tag or keyword used when fetching for certain words from the database.
    */
 
@@ -66,6 +68,15 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
       alert(error);
     }
   };
+
+  /**
+   * This function contains the game logic. Questions are mapped from permanentWords state to be
+   * rendered to player and answers from words state (different state because answers will be shuffled).
+   * Answers by click change color if it's right or wrong and then call the function handles changing
+   * score and index (the question shown to player).
+   * @param {Number} mode is the game mode that defines whether the questions-answers should be fin-eng or eng-fin.
+   * @returns div that contains question (by index) and answer options.
+   */
 
   const Game = (mode) => {
     var question = [];
@@ -105,6 +116,14 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
       }
     });
 
+    /**
+     * This function changes the question to next after 1000ms timeout. It also
+     * checks whether the answer is correct. If correct, the color is changed to green, otherwise red.
+     * Also score is added if answer is correct. When the player reaches to last question and answers it,
+     * the gameThrough state is set to true.
+     * @param {String} a is the players answer.
+     */
+
     const next = (a) => {
       userAnswer.current = a;
 
@@ -113,6 +132,12 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
       } else {
         answerColor.current = "Wrong";
       }
+
+      /**
+       * This function checks if the players answer is correct and changes the answer divs
+       * color accordingly.
+       * @param {String} answer is the players answer
+       */
 
       const handleColor = (answer) => {
         var temporary = [...words];
@@ -125,6 +150,12 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
       };
 
       handleColor(a);
+
+      /**
+       * This function checks the players answer whether it's correct or not and then adds score accordingly.
+       * It also changes the index forward and checks whether the game should end or not.
+       * @param {String} answer is the players answer.
+       */
 
       const checkForCorrect = (answer) => {
         if (answer === correct.current) {
@@ -193,6 +224,13 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
   );
 };
 
+/**
+ * This function is used to cut an array to desired size with random indexes remaining.
+ * @param {array} arr is array that is wished to be cutted.
+ * @param {Number} size is the size the array is wished to be cutted to.
+ * @returns the cutted array.
+ */
+
 const ArrayCutter = (arr, size) => {
   var indexes = [];
   var newArray = [];
@@ -214,24 +252,25 @@ const ArrayCutter = (arr, size) => {
   return newArray;
 };
 
+/**
+ * This function shuffles array order.
+ * @param {array} array is the array that is wished to be shuffled
+ * @returns the shuffled array.
+ */
+
 const shuffle = (array) => {
   let currentIndex = array.length,
     randomIndex;
 
-  // While there remain elements to shuffle...
   while (currentIndex != 0) {
-    // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
-    // And swap it with the current element.
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex],
       array[currentIndex],
     ];
   }
-
-  console.log("now shuffling");
 
   return array;
 };
