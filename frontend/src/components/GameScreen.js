@@ -3,6 +3,16 @@ import Results from "./Results";
 
 const axios = require("axios").default;
 
+/**
+ * This component contains all the logic and functions used in the word game. It fetches words based on the keyword
+ * it receives, then renders them to player according to game mode.
+ * @param {String} keyword is the tag that defines which words are fetched from database.
+ * @param {Number} gameMode is the numeric value of gameMode that defines whether game is played fin-eng or eng-fin.
+ * @param {Number} amount is the amount of words used in the game.
+ * @param {boolean} back is the state from previous component used to return from the game screen.
+ * @returns
+ */
+
 const GameScreen = ({ keyword, gameMode, amount, back }) => {
   const [words, setWords] = useState([]);
   const [maxAmount, setMaxAmount] = useState(amount);
@@ -16,6 +26,12 @@ const GameScreen = ({ keyword, gameMode, amount, back }) => {
   const userAnswer = useRef("");
   const answerColor = useRef("");
   const correct = useRef("");
+
+  /**
+   * Async function that is called when starting or replaying the game.
+   * Fetches desired words from the database with axios.get request. Words are then mapped to Words and permanentWords states.
+   * @param k is the tag or keyword used when fetching for certain words from the database.
+   */
 
   const handleStartGame = async (k) => {
     try {
