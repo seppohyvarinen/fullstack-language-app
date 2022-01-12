@@ -3,15 +3,34 @@ import GameScreen from "./GameScreen";
 
 const axios = require("axios").default;
 
+/**
+ * This component fetches tags from the database and then maps them in to divs that are rendered to player
+ * as "topics" player can learn words from.
+ * @param {Number} gameMode is the state that defines whether game is played in fin-eng or eng-fin mode.
+ * @param {Number} amount is the amount of words used in the game.
+ * @returns when gameOn state is false, the menu, otherwise the GameScreen component.
+ */
+
 const WordGame = ({ gameMode, amount }) => {
   const [tags, setTags] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [gameOn, setGameOn] = useState(false);
 
+  /**
+   * This function handles starting the game, it sets the gameOn state to true and sets the keyword that will be passed
+   * as props to the GameScreen component.
+   * @param {String} tag acts as keyword for the GameScreen so it knows the tag the fetch needs to be done by.
+   */
+
   const handleGameStart = (tag) => {
     setKeyword(tag);
     setGameOn(true);
   };
+
+  /**
+   * Async function that fetches tags from the database with axios.get. Tags are then mapped as divs
+   * to be rendered for the user.
+   */
 
   const fetchTags = async () => {
     try {
@@ -27,6 +46,10 @@ const WordGame = ({ gameMode, amount }) => {
       alert(error);
     }
   };
+
+  /**
+   * By default all tags are fetched as useEffect for the user.
+   */
 
   useEffect(() => {
     fetchTags();
