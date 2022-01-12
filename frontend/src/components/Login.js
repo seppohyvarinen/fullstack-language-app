@@ -2,6 +2,13 @@ import { useState } from "react";
 
 const axios = require("axios").default;
 
+/**
+ * This component handles the user login for the application. User must enter correct username and password to login.
+ * @param {Number} Setmode state of Home component that defines which area of the app is rendered
+ * @param {String} setToken setter for the token state, in Login component if login is succesful token is set to Home components token state.
+ * @returns a modal containing all the inputs and buttons needed for login.
+ */
+
 const Login = ({ Setmode, setToken }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +20,11 @@ const Login = ({ Setmode, setToken }) => {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
+
+  /**
+   * This function handles authentication when called. It uses axios.post call to send username and password.
+   * It receives a JWT token as response which is then set to state.
+   */
 
   const handleAuth = async () => {
     try {
