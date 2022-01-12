@@ -24,11 +24,23 @@ const TeacherView = ({ Setmode, token, setToken }) => {
   const [editFin, setEditFin] = useState("");
   const [editEng, setEditEng] = useState("");
 
+  /**
+   * This function handles initializing the edit of a translation. It sets the states for finnish and english and also sets
+   * EditModal state true so EditModal is rendered.
+   * @param {String} f is the finnish translation received for editing.
+   * @param {String} e is the english translation received for editing.
+   */
+
   const handleEdit = (f, e) => {
     setEditFin(f);
     setEditEng(e);
     setEditModal(true);
   };
+
+  /**
+   * Async function that fetches all translations from the database. Uses axios.get.
+   * Sets the response array to Words state as divs containing the translations.
+   */
 
   const fetchAll = async () => {
     try {
@@ -49,6 +61,12 @@ const TeacherView = ({ Setmode, token, setToken }) => {
     }
   };
 
+  /**
+   * Async function that fetches translations based on their tag. Uses axios.get. Response is then mapped as divs
+   * and set to Words state.
+   * @param {Object} t is the object containing tag information.
+   */
+
   const fetchByTag = async (t) => {
     try {
       var response = await axios.get("/translations", {
@@ -65,12 +83,17 @@ const TeacherView = ({ Setmode, token, setToken }) => {
           {finnish + " - " + english}
         </div>
       ));
-      console.log("mapped: " + mapped);
+
       setWords(mapped);
     } catch (error) {
       alert(error);
     }
   };
+
+  /**
+   * Handles filtering of the words rendered to user.
+   * @param {} e is the filter value.
+   */
 
   const handleFilter = (e) => {
     console.log(e);
@@ -78,9 +101,19 @@ const TeacherView = ({ Setmode, token, setToken }) => {
     handleFetch(filterValue);
   };
 
+  /**
+   * Handles the fetch according to tag information it receives. Either calls fetchAll or fetchByTag
+   * based on this information.
+   * @param {Object} t contains tag information.
+   */
+
   const handleFetch = (t) => {
     t.value === "Kaikki sanat" ? fetchAll() : fetchByTag(t);
   };
+
+  /**
+   * By default useEffect fetches all translations for the user to be viewed.
+   */
 
   useEffect(() => {
     fetchAll();
