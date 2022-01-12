@@ -3,19 +3,26 @@ import { useState, useEffect } from "react";
 import Select from "react-select";
 const axios = require("axios").default;
 
-const AddWords = ({
-  setWords,
-  fetchAll,
-  setFilter,
-  handleFetch,
-  filterValue,
-  token,
-}) => {
+/**
+ * Subcomponent for TeacherView. Handles logic and functions for sending post requests to database and re-fetching updated data.
+ * @param setFilter is setter received as props from TeacherView component. It sets the filtervalue for filtering rendered words.
+ * @param handleFetch is received as props so after adding words the word array can be re-fetched with updated words.
+ * @param filterValue is filter value received as props so the re-fetch can be done with correct filter value.
+ * @param token is the JWT token received as props so it can be sent with post requests.
+ * @returns inputs and buttons that use the functions defined in this component to post data to database.
+ */
+
+const AddWords = ({ setFilter, handleFetch, filterValue, token }) => {
   const [fin, setFin] = useState("");
   const [eng, setEng] = useState("");
   const [tagInput, setTagInput] = useState("");
   const [tagArray, setTagArray] = useState([]);
   const [newTag, setNewTag] = useState("");
+
+  /**
+   * Fetches all tags from the database. Tags are then mapped to tagArray state that is then passed to Select component
+   * for user to select from when adding a new word.
+   */
 
   const fetchTags = async () => {
     try {
@@ -62,6 +69,12 @@ const AddWords = ({
     setNewTag(e.target.value);
   };
 
+  /**
+   * Async function that uses axios.post to save new translation to the database.
+   * Sends in the request body finnish, english, tag and also the JWT access token, so the request
+   * is validated in the backend.
+   */
+
   const SaveWord = async () => {
     if (fin.length !== 0 && eng.length !== 0 && tagInput.length !== 0) {
       try {
@@ -82,6 +95,11 @@ const AddWords = ({
       alert("Tarkista, että täytit kaikki kohdat!");
     }
   };
+
+  /**
+   * Async function that saves new tag to database with axios.post.
+   * Sends with request the tag and JWT access token for authentication purposes.
+   */
 
   const SaveNewTag = async () => {
     try {
