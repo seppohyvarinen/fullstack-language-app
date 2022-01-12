@@ -1,6 +1,12 @@
 import FinEng from "../img/fin-eng.png";
 import EngFin from "../img/eng-fin.png";
 
+/**
+ * This component renders the divs that player can choose from (game modes).
+ * @param setMode is setter controlling the state in StudentView that defines what is rendered.
+ * @returns divs containing explanations and images of the game modes.
+ */
+
 const LearningMode = ({ setMode }) => {
   return (
     <div className="Modes">
