@@ -15,11 +15,12 @@ import About from "./components/About";
 function App() {
   const [homeState, setHomeState] = useState(0);
   const [amountState, setAmountState] = useState(5);
+  const [bgColor, setBgColor] = useState("default");
 
   return (
     <BrowserRouter>
       {" "}
-      <div className="App">
+      <div className={bgColor === "default" ? "App" : "MorningLight"}>
         <Navi />{" "}
         <div className="content">
           <Routes>
@@ -36,9 +37,7 @@ function App() {
             <Route
               path="/settings"
               exact
-              element={
-                <Settings amount={amountState} setAmount={setAmountState} />
-              }
+              element={<Settings setColor={setBgColor} />}
             />
             <Route
               path="/about"
