@@ -1,3 +1,9 @@
+/**
+ * This component renders the mode select screen for user, user can choose from teacher or student mode.
+ * @param Setmode is the inherited setter for mode.
+ * @returns Divs that onClick change the app mode to login(teacher) or student mode.
+ */
+
 const ModeSelect = ({ Setmode }) => {
   const handleClick = (mode) => {
     Setmode(mode);
