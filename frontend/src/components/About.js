@@ -4,7 +4,16 @@
  */
 
 const About = () => {
-  return <div></div>;
+  return (
+    <div className="About">
+      Sovellus englannin sanojen harjoittelun tueksi. Suunnattu
+      peruskouluikäisille lapsille sekä englannin opettajille. Sovelluksessa on
+      2 moodia, opettaja moodi ja oppilas moodi. Opettajamoodi on suojattu
+      salasanalla, tässä moodissa opettaja voi lisätä uusia käännöksiä
+      tietokantaan, sekä poistaa ja muokata käännöksiä. Oppilasmoodissa pääsee
+      harjoittelemaan sanoja haluamastaan aiheesta.
+    </div>
+  );
 };
 
 export default About;
