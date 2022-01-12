@@ -2,6 +2,11 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+/**
+ * This component uses react-bootstrap librarys Navbar to render a responsive navigation bar for the application.
+ * @returns {Navbar} Navigation bar with responsive behaviour.
+ */
+
 const Navi = () => {
   const [expanded, setExpanded] = useState(false);
   return (
