@@ -5,9 +5,11 @@ import StudentView from "./StudentView";
 import Login from "./Login";
 
 /**
- * @component
- * @param {*} param0
- * @returns
+ * This component acts as the Home page of the app. It conditionally renders either Teacher, Student, Login or ModeSelect view based
+ * on it's state.
+ * @param {Number} state is the viewing state inherited from App.js. that defines what is rendered.
+ * @param {Number} amount is inherited state that defines the amount of questions in the game
+ * @returns The component conditionally returns different components according to it's state.
  */
 
 const Home = ({ state, amount }) => {
