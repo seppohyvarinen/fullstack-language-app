@@ -8,6 +8,10 @@ const { createTokens, validateToken } = require("../JWT/JWT.js");
 
 translations.use(tagFilter);
 
+/**
+ * This function calls the database function that fetches all translations from the database.
+ */
+
 translations.get("/", async (req, res) => {
   try {
     let all = await connections.findAll();
@@ -18,6 +22,10 @@ translations.get("/", async (req, res) => {
   }
 });
 
+/**
+ * This functions calls the database function that fetches all the tags from the database.
+ */
+
 translations.get("/tags", async (req, res) => {
   try {
     let tags = await connections.findTags();
@@ -27,6 +35,11 @@ translations.get("/tags", async (req, res) => {
     res.send(error);
   }
 });
+
+/**
+ * This function calls a database function that saves new translation to database.
+ * Uses validateToken middleware to ensure authentication.
+ */
 
 translations.post("/", validateToken, async (req, res) => {
   let tmp = req.body;
@@ -41,6 +54,11 @@ translations.post("/", validateToken, async (req, res) => {
   }
 });
 
+/**
+ * This function calls the database function that saves a new tag to database.
+ * Uses validateToken middleware to ensure authentication.
+ */
+
 translations.post("/tag", validateToken, async (req, res) => {
   let tmp = req.body;
 
@@ -53,6 +71,11 @@ translations.post("/tag", validateToken, async (req, res) => {
     res.send(`${res.statusCode} Bad Request: ${error}`);
   }
 });
+
+/**
+ * This function calls the database function that checks that the received user
+ * and password can be found from the database.
+ */
 
 translations.post("/auth", async (req, res) => {
   let tmp = req.body;
@@ -73,6 +96,11 @@ translations.post("/auth", async (req, res) => {
   }
 });
 
+/**
+ * This function calls the database function that handles editing translations in the database.
+ * Uses validateToken middleware to ensure authentication.
+ */
+
 translations.patch("/", validateToken, async (req, res) => {
   let word = req.body;
 
@@ -87,6 +115,11 @@ translations.patch("/", validateToken, async (req, res) => {
   }
 });
 
+/**
+ * This function calls the database function that handles deleting translations from the database.
+ * Uses validateToken middleware to ensure authentication.
+ */
+
 translations.delete("/", validateToken, async (req, res) => {
   let word = req.body;
 
@@ -100,6 +133,12 @@ translations.delete("/", validateToken, async (req, res) => {
     res.send({ msg: error });
   }
 });
+
+/**
+ * This function operates as middleware that checks if the get request from the frontend
+ * contains tag information. If it does the function calls the database function that
+ * fetches translations by tag, otherwise it calls next().
+ */
 
 async function tagFilter(req, res, next) {
   const tag = req.query.tag;
