@@ -1,3 +1,9 @@
+/**
+ * This component contains the app settings.
+ * @param setColor is the setter for state controlling the app bg color.
+ * @returns necessary information and buttons to change app settings.
+ */
+
 const Settings = ({ setColor }) => {
   return (
     <div className="Settings">
