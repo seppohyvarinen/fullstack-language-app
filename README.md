@@ -1,7 +1,11 @@
 # (WORK IN PROGRESS!) Language app for learning english words (for finnish kids)
 
 This application is designed for finnish kids and teachers to support learning english.
+Deployed in heroku: https://fin-eng-translation-app.herokuapp.com/
+
+
 The application has 2 modes, for students and for teachers.
+![Demo pic](screenshots/main_screen.jpg)
 Students can pick a category they wish to practice words from and start training.
 Students are presented with multi-choice questions and they have to choose
 the correct translation for the word in question.
