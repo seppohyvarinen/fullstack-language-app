@@ -5,6 +5,8 @@ Deployed in heroku: https://fin-eng-translation-app.herokuapp.com/
 
 This is a fullstack project that uses React.js in the frontend and Node.js with Express.js library
 in the backend. It was a lot of work but definitely a learning experience.
+Backend is connected to MySQL database on our school (TAMK) server and it fetches data from there.
+Front code is done with modern function based React that uses hooks.
 
 
 The application has 2 modes, for students and for teachers.
