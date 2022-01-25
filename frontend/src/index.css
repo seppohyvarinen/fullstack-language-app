@@ -10,6 +10,7 @@
   height: 100vh;
   overflow: scroll;
   background-image: linear-gradient(rgb(148, 122, 219), rgb(218, 205, 253));
+  max-width: 1vw;
 }
 
 .MorningLight {
