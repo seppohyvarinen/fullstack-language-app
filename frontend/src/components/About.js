@@ -11,7 +11,8 @@ const About = () => {
       2 moodia, opettaja moodi ja oppilas moodi. Opettajamoodi on suojattu
       salasanalla, tässä moodissa opettaja voi lisätä uusia käännöksiä
       tietokantaan, sekä poistaa ja muokata käännöksiä. Oppilasmoodissa pääsee
-      harjoittelemaan sanoja haluamastaan aiheesta.
+      harjoittelemaan sanoja haluamastaan aiheesta. Koodi löytyy kokonaisuudessaan
+      githubista: https://github.com/seppohyvarinen/fullstack-language-app/
     </div>
   );
 };
