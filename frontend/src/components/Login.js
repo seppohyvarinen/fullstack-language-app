@@ -40,7 +40,7 @@ const Login = ({ Setmode, setToken }) => {
         alert("Tarkista käyttäjätunnus ja salasana");
       }
     } catch (error) {
-      alert("wssup");
+      alert(error);
     }
   };
   return (
