@@ -3,8 +3,6 @@
 This application is designed for finnish kids and teachers to support learning english. <br/>
 Deployed in heroku: https://fin-eng-translation-app.herokuapp.com/ <br/>
 
-Screencast: https://www.youtube.com/watch?v=GxR0N5eG2sc <br/>
-
 This is a fullstack project that uses React.js in the frontend and Node.js with Express.js library
 in the backend. It was a lot of work but definitely a learning experience.
 Backend is connected to MySQL database on our school (TAMK) server and it fetches data from there.
