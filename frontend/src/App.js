@@ -16,12 +16,13 @@ function App() {
   const [homeState, setHomeState] = useState(0);
   const [amountState, setAmountState] = useState(5);
   const [bgColor, setBgColor] = useState("default");
+  const [mode, Setmode] = useState(0);
 
   return (
     <BrowserRouter>
       {" "}
       <div className={bgColor === "default" ? "App" : "MorningLight"}>
-        <Navi />{" "}
+        <Navi Setmode={Setmode} />{" "}
         <div className="content">
           <Routes>
             <Route
@@ -31,6 +32,8 @@ function App() {
                   onClick={() => setHomeState(0)}
                   state={homeState}
                   amount={amountState}
+                  mode={mode}
+                  Setmode={Setmode}
                 />
               }
             />
