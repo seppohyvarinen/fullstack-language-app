@@ -12,8 +12,7 @@ import Login from "./Login";
  * @returns The component conditionally returns different components according to it's state.
  */
 
-const Home = ({ state, amount }) => {
-  const [mode, Setmode] = useState(state);
+const Home = ({ amount, mode, Setmode }) => {
   const [token, setToken] = useState("");
 
   return (

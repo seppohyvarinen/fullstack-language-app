@@ -7,8 +7,13 @@ import { useState } from "react";
  * @returns {Navbar} Navigation bar with responsive behaviour.
  */
 
-const Navi = () => {
+const Navi = ({ Setmode }) => {
   const [expanded, setExpanded] = useState(false);
+
+  const handleHome = () => {
+    Setmode(0);
+    setExpanded(false);
+  };
   return (
     <Navbar
       className="Navi"
@@ -29,7 +34,7 @@ const Navi = () => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Container className="Links">
           <Nav className="col justify-content-center">
-            <Nav.Link as={Link} to="/" onClick={() => setExpanded(false)}>
+            <Nav.Link as={Link} to="/" onClick={() => handleHome()}>
               Koti
             </Nav.Link>
             <Nav.Link
